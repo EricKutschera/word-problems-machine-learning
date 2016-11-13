@@ -1,0 +1,54 @@
+CS446 Project Proposal
+Team Members
+Mayank Bhatt - mayankb2
+Sohan Dan - sdan2
+Eric Kutschera - erick2
+
+
+Topic -  Algebra Word Problems
+
+
+Problem Description
+
+We would like to propose as a project, building a machine learning system to correctly provide equations and final numeric answers to mathematical word problems. The types of problems we are targeting are those frequently presented to students at the high school level and earlier. While word problems can cover topics such as algebra, geometry, probability, and basic arithmetic, we intend to focus on algebra word problems.
+
+One example of such a problem is:
+  - A writing workshop enrolls novelists and poets in a ratio of 5 to 3.
+    There are 24 people at the workshop.
+    How many novelists are there? How many poets are there?
+
+Solving such problems is interesting because it involves combining mathematical relationships with natural language reasoning across sentence boundaries. From reading a couple of papers on this topic, we know that it is possible to create a program which can correctly solve such problems with greater than 70% accuracy.
+
+Project Goals
+
+The goal of our project will be to build a machine learning system which achieves similar results to the papers referenced below. We will follow closely the designs used in the papers which have the following basic steps. First, analyze the natural language of the problem text to produce a parse tree with part of speech tags and additional information. Second, define a space of possible systems of equations with numeric solutions for each word problem. This is done by instantiating equation templates obtained from the labeled training data. Third, create a set of features which describes the particular choice of an equation template, an instantiation with variables from the natural language, and a solution. Finally, apply a machine learning algorithm to map the feature set to a value indicating how likely the choice is to correctly solve the problem.
+
+Developing a program which behaves similarly to those described by the papers is our starting point. Fully understanding the existing work will provide a good opportunity for learning about machine learning ideas not directly covered in this class. We also would like to extend the work by experimenting with algorithms other than beam search, and quadratic programming, which are used in the papers. One other possible extension is to see how performance is impacted when swapping out the data set for geometric word problems. It would also be interesting to see if acceptable performance can be achieved on a data set including both algebraic and geometric problems.
+Literature Survey
+
+Below is a brief summary of the two referenced papers, and the resources they make available which we intend to use.
+
+https://people.csail.mit.edu/regina/my_papers/wp.pdf
+Title: Learning to Automatically Solve Algebra Word Problems
+First Author: Kushman
+Summary:
+This is the initial paper which presents a machine learning solution to automatically solving algebra word problems. It searches the space of possible template instantiations using beam search. The goal of the search is to find the most probable solution according to a log-linear distribution.
+Provided resources:
+http://groups.csail.mit.edu/rbg/code/wordprobs/ (base)
+http://groups.csail.mit.edu/rbg/code/wordprobs/wordprobs.tar.gz (code)
+http://groups.csail.mit.edu/rbg/code/wordprobs/questions.json (data)
+This includes 514 examples gathered from https://www.algebra.com/all-sections.mpl
+These examples include the raw text of the problem as well as the equations used to solve it and the final solution.
+      "lEquations": [
+        "3.0*novelists=5.0*poets",
+        "novelists+poets=24.0"
+      ],
+      "lSolutions": [15.0, 9.0]
+The examples are parsed with the "stanford-parser" included with the code which generates (among other information) a parse tree for each sentence
+(S (NP (DT A) (VBG writing) (NN workshop)) ... )
+
+http://www.aclweb.org/anthology/D15-1096
+Title: Learn to Solve Algebra Word Problems Using Quadratic Programming
+First Author: Zhou
+Summary:
+A follow up to the first paper which achieves better results. It reduces the space of possible template instantiations by only choosing numbers from the problem text and not the nouns which name those quantities. It optimizes the probability by generating and solving a quadratic programming problem.
