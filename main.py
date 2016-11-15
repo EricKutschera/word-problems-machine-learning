@@ -18,12 +18,13 @@ def main():
     parser.add_argument('-i', '--index', type=int, default=2598,
                         help='iIndex of a specific word problem')
     args = parser.parse_args()
+
     if args.action == 'print':
         examples = LabeledExample.read(args.json)
         example = examples[args.index]
         natural_language = NLP.read(args.nlp, args.index)
         wp = WordProblem(example, natural_language)
-        print(wp)
+        print(wp.extract_template())
 
 if __name__ == '__main__':
     main()

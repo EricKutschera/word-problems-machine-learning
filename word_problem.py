@@ -1,10 +1,18 @@
 import json
 
+from equation import Equation
+from template import Template
+
 
 class WordProblem(object):
     def __init__(self, labeled_example, nlp):
         self.labeled_example = labeled_example
         self.nlp = nlp
+
+    def extract_template(self):
+        parsed_equations = [Equation.from_string(eq)
+                            for eq in self.labeled_example.equations]
+        return Template.from_equations(parsed_equations)
 
     def __str__(self):
         return json.dumps(self.to_json())
