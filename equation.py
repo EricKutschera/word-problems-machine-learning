@@ -4,15 +4,15 @@ from sympy.parsing.sympy_parser import parse_expr
 
 
 class Equation(object):
-    def __init__(self, full, symbols):
+    def __init__(self, full):
         self.full = full
-        self.symbols = symbols
+        self.symbols = full.free_symbols
 
     @classmethod
     def from_string(cls, s):
         lhs, rhs = [cls.parse_side(side) for side in s.split('=')]
         full = lhs - rhs
-        return Equation(full, full.free_symbols)
+        return Equation(full)
 
     @staticmethod
     def clean(s):
