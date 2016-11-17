@@ -10,16 +10,15 @@ class Template(object):
         self.equations = equations
 
     @classmethod
-    def from_equations(cls, equations):
-        # TODO(Eric): need to replace the symbols in
-        # the equations with number slots (n_{i})
-        # that requires having the problem text to see
-        # if the number appears in the text
-        # (yes_in_text -> slot, no -> constant)
-        # Then canonicalize by solving the system in terms of each
+    def from_equations_and_nlp(cls, equations, nlp):
+        # TODO(Eric): Still need to
+        # canonicalize by solving the system in terms of each
         # slot. sympy.linsolve(equations, unknowns)
+        # that should enable a comparison between templates
+        # with the goal of finding a set of unique templates
         with_unknowns = cls.generalize_unknowns(equations)
-        return Template(with_unknowns)
+        with_all_slots = cls.generalize_numbers(with_unknowns, nlp)
+        return Template(with_all_slots)
 
     @staticmethod
     def generalize_unknowns(equations):
@@ -45,6 +44,68 @@ class Template(object):
                                                                 replacement)
 
         return [Equation(eq) for eq in new_equations]
+
+    # TODO(Eric): only works when the numbers appear as decimals
+    # in the nlp.
+    # Running $python main.py print -i 116
+    # shows a case where "four" is not replaced properly
+    @classmethod
+    def generalize_numbers(cls, equations, nlp):
+        numbers = cls.numbers_from_nlp(nlp)
+        new_equations = [eq.full for eq in equations]
+
+        replacements_by_eq = list()
+        for eq in new_equations:
+            replacements = list()
+            for sym in eq.free_symbols:
+                coef = abs(eq.coeff(sym))
+                if coef in numbers:
+                    numbers.remove(coef)
+                    replacements.append(eq.coeff(sym)*sym)
+
+                eq -= eq.coeff(sym)*sym
+
+            # After removing all variable terms, only a constant remains
+            if eq != 0:
+                if abs(eq) in numbers:
+                    numbers.remove(abs(eq))
+                    replacements.append(eq)
+
+            replacements_by_eq.append(replacements)
+
+        count = 0
+        for i, replacements in enumerate(replacements_by_eq):
+            for replacement in replacements:
+                slot = sympy.Symbol('n_{}'.format(count))
+                count += 1
+
+                syms = replacement.free_symbols
+                if syms:
+                    sym = list(syms)[0]
+                    mult = -1 if replacement.coeff(sym) < 0 else 1
+                    sub = slot * sym
+                else:
+                    mult = -1 if replacement < 0 else 1
+                    sub = mult * slot
+
+                new_equations[i] = new_equations[i].replace(replacement, sub)
+
+        return [Equation(eq) for eq in new_equations]
+
+    @staticmethod
+    def numbers_from_nlp(nlp):
+        words = list()
+        for s in nlp.sentences:
+            words.extend([t.word for t in s.tokens])
+
+        numbers = list()
+        for word in words:
+            try:
+                numbers.append(float(word))
+            except ValueError:
+                pass
+
+        return numbers
 
     def __str__(self):
         return json.dumps(self.to_json())

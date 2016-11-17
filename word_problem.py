@@ -12,7 +12,7 @@ class WordProblem(object):
     def extract_template(self):
         parsed_equations = [Equation.from_string(eq)
                             for eq in self.labeled_example.equations]
-        return Template.from_equations(parsed_equations)
+        return Template.from_equations_and_nlp(parsed_equations, self.nlp)
 
     def __str__(self):
         return json.dumps(self.to_json())
