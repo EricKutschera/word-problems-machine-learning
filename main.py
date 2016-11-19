@@ -7,7 +7,7 @@ from word_problem import WordProblem
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', choices=['print'],
+    parser.add_argument('action', choices=['print', 'process'],
                         help='What to do with the data')
     parser.add_argument('-j', '--json', type=str,
                         default='data/questions.json',
@@ -25,6 +25,16 @@ def main():
         natural_language = NLP.read(args.nlp, args.index)
         wp = WordProblem(example, natural_language)
         print(wp.extract_template())
+
+    if args.action == 'process':
+        examples = LabeledExample.read(args.json)
+        indices = [e.index for e in examples.itervalues()]
+        natural_language = {i: NLP.read(args.nlp, i) for i in indices}
+        word_problems = [WordProblem(examples[i], natural_language[i])
+                         for i in indices]
+        templates = [wp.extract_template() for wp in word_problems]
+        print(len(templates))
+
 
 if __name__ == '__main__':
     main()

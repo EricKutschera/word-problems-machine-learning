@@ -101,7 +101,9 @@ class Template(object):
                 numbers.append(from_word)
                 continue
 
-            if t.ner == 'NUMBER':
+            # In question 2189 there is a blank in the text '___'
+            # which is interpreted as a NUMBER but with no value
+            if t.ner == 'NUMBER' and t.normalized_ner is not None:
                 from_ner = cls.try_parse_float(t.normalized_ner)
                 if from_ner is not None:
                     numbers.append(from_ner)

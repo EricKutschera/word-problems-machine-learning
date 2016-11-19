@@ -17,7 +17,7 @@ class Equation(object):
     @staticmethod
     def clean(s):
         SUBSTITUTIONS = {'0.275000.0': '0.275000'}
-        KEYWORDS = ['print']
+        KEYWORDS = ['print', 'fraction', 'floor']
 
         for kw in KEYWORDS:
             s = s.replace(kw, '{}_'.format(kw))
