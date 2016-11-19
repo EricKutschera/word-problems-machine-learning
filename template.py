@@ -1,3 +1,4 @@
+import itertools
 import json
 
 from sympy import Symbol, linsolve
@@ -123,7 +124,7 @@ class Template(object):
         raw_sol = list(sol_set)[0]
         sol = dict()
         for i, u in enumerate(unknowns):
-            sol[u] = raw_sol[i]
+            sol[u] = Equation(raw_sol[i])
 
         return sol
 
@@ -146,10 +147,61 @@ class Template(object):
         return ([Equation(eq) for eq in new_equations],
                 list(set(replacements.values())))
 
+    @staticmethod
+    def map_symbols(a_syms, b_syms):
+        if len(a_syms) != len(b_syms):
+            return list()
+
+        mappings = list()
+        for perm in itertools.permutations(b_syms):
+            mappings.append(dict(zip(a_syms, perm)))
+        return mappings
+
+    def __hash__(self):
+        return 1
+
     # TODO(Eric): should be possible to compare templates
     # for equality now that each unknown is solved as
     # an expression involving the number slots and constants
+    # Kushman paper says that there are 28 unique templates out of 514
     def __eq__(self, other):
+        self_unks = set(self.solution.keys())
+        other_unks = set(other.solution.keys())
+        if self_unks != other_unks:
+            return False
+
+        self_num_slots = {n for eq in self.solution.values()
+                          for n in eq.symbols}
+        other_num_slots = {n for eq in other.solution.values()
+                           for n in eq.symbols}
+        if self_num_slots != other_num_slots:
+            return False
+
+        unk_mappings = self.map_symbols(self_unks, other_unks)
+        num_mappings = self.map_symbols(self_num_slots, other_num_slots)
+        for n_map in num_mappings:
+            for u_map in unk_mappings:
+                for self_u, other_u in u_map.iteritems():
+                    self_eq = self.solution[self_u].full
+                    other_eq = other.solution[other_u].full
+                    for old_n, new_n in n_map.iteritems():
+                        other_eq = other_eq.replace(old_n, new_n)
+
+                    # If the equations are not equal after this
+                    # transformation, then this combo of n_map, u_map
+                    # will not work
+                    if self_eq != other_eq:
+                        break
+
+                    # All equations match under this mapping
+                    # Thus there exists a mapping s.t. the templates
+                    # are exactly the same
+                    print(str(self))  # TODO
+                    print(str(other))
+                    print(n_map)
+                    print(u_map)
+                    return True
+
         return False
 
     def __str__(self):
@@ -157,5 +209,5 @@ class Template(object):
 
     def to_json(self):
         return {'equations': [e.to_json() for e in self.equations],
-                'solution': {str(k): str(v)
+                'solution': {str(k): v.to_json()
                              for k, v in self.solution.iteritems()}}

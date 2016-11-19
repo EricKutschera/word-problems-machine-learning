@@ -27,6 +27,14 @@ class Equation(object):
 
         return s
 
+    # TODO(Eric): equation 6158 has an equation:
+    # "2.0*0.01*two_acid+5.0*0.01*five_acid=4.0*0.01*24.0"
+    # which parses as
+    # lhs = 0.05*five_acid + 0.02*two_acid
+    # rhs = 0.96
+    # This drops information necessary to pull out slots from
+    # the question text
+    # parse_expr(s, evaluate=False) might work
     @classmethod
     def parse_side(cls, s):
         s = cls.clean(s)
