@@ -60,17 +60,21 @@ class Sentence(object):
 
 
 class Token(object):
-    def __init__(self, word, lemma, pos):
+    def __init__(self, word, lemma, pos, ner, normalized_ner):
         self.word = word
         self.lemma = lemma
         self.pos = pos
+        self.ner = ner  # Named Entity Recognizer
+        self.normalized_ner = normalized_ner
 
     @staticmethod
     def from_xml(xml):
         word = xml.findtext('word')
         lemma = xml.findtext('lemma')
         pos = xml.findtext('POS')
-        return Token(word, lemma, pos)
+        ner = xml.findtext('NER')
+        normalized_ner = xml.findtext('NormalizedNER')
+        return Token(word, lemma, pos, ner, normalized_ner)
 
     def __str__(self):
         return json.dumps(self.to_json())

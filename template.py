@@ -45,10 +45,6 @@ class Template(object):
 
         return [Equation(eq) for eq in new_equations]
 
-    # TODO(Eric): only works when the numbers appear as decimals
-    # in the nlp.
-    # Running $python main.py print -i 116
-    # shows a case where "four" is not replaced properly
     @classmethod
     def generalize_numbers(cls, equations, nlp):
         numbers = cls.numbers_from_nlp(nlp)
@@ -92,20 +88,33 @@ class Template(object):
 
         return [Equation(eq) for eq in new_equations]
 
-    @staticmethod
-    def numbers_from_nlp(nlp):
-        words = list()
+    @classmethod
+    def numbers_from_nlp(cls, nlp):
+        tokens = list()
         for s in nlp.sentences:
-            words.extend([t.word for t in s.tokens])
+            tokens.extend(s.tokens)
 
         numbers = list()
-        for word in words:
-            try:
-                numbers.append(float(word))
-            except ValueError:
-                pass
+        for t in tokens:
+            from_word = cls.try_parse_float(t.word)
+            if from_word is not None:
+                numbers.append(from_word)
+                continue
+
+            if t.ner == 'NUMBER':
+                from_ner = cls.try_parse_float(t.normalized_ner)
+                if from_ner is not None:
+                    numbers.append(from_ner)
+                    continue
 
         return numbers
+
+    @staticmethod
+    def try_parse_float(s):
+        try:
+            return float(s)
+        except ValueError:
+            return None
 
     def __str__(self):
         return json.dumps(self.to_json())
