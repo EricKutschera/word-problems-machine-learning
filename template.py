@@ -18,8 +18,8 @@ class Template(object):
         solution = cls.solve(with_all_slots)
         return Template(with_all_slots, solution)
 
-    @staticmethod
-    def generalize_unknowns(equations):
+    @classmethod
+    def generalize_unknowns(cls, equations):
         new_equations = [eq.full for eq in equations]
         symbols = {s for eq in equations for s in eq.symbols}
 
@@ -35,8 +35,9 @@ class Template(object):
                                              unknown_info['occurences'])
                     unknown_info['occurences'] += 1
                     replacement = Symbol(unknown)
-                    new_equations[i] = new_equations[i].replace(symbol,
-                                                                replacement)
+                    new_equations[i] = cls.no_eval_replace(new_equations[i],
+                                                           symbol,
+                                                           replacement)
 
         return [Equation(eq) for eq in new_equations]
 
@@ -45,44 +46,21 @@ class Template(object):
         numbers = cls.numbers_from_nlp(nlp)
         new_equations = [eq.full for eq in equations]
 
-        replacements_by_eq = list()
-        for eq in new_equations:
-            replacements = list()
-            for sym in eq.free_symbols:
-                coef = abs(eq.coeff(sym))
-                if coef in numbers:
-                    numbers.remove(coef)
-                    replacements.append(eq.coeff(sym)*sym)
-
-                eq -= eq.coeff(sym)*sym
-
-            # After removing all variable terms, only a constant remains
-            if eq != 0:
-                if abs(eq) in numbers:
-                    numbers.remove(abs(eq))
-                    replacements.append(eq)
-
-            replacements_by_eq.append(replacements)
-
         count = 0
-        for i, replacements in enumerate(replacements_by_eq):
-            for replacement in replacements:
-                slot = Symbol('n_{}'.format(count))
-                count += 1
-
-                syms = replacement.free_symbols
-                if syms:
-                    sym = list(syms)[0]
-                    mult = -1 if replacement.coeff(sym) < 0 else 1
-                    sub = slot * sym
-                else:
-                    mult = -1 if replacement < 0 else 1
-                    sub = mult * slot
-
-                new_equations[i] = new_equations[i].replace(replacement, sub)
+        for num in numbers:
+            for i, eq in enumerate(new_equations):
+                if eq.has(num):
+                    slot = Symbol('n_{}'.format(count))
+                    count += 1
+                    new_equations[i] = cls.no_eval_replace(new_equations[i],
+                                                           num,
+                                                           slot)
 
         return [Equation(eq) for eq in new_equations]
 
+    # TODO(Eric): for question 2239, the number 2340 appears
+    # in the text as '2,340.00 dollars'. It is not found by
+    # this function
     @classmethod
     def numbers_from_nlp(cls, nlp):
         tokens = list()
@@ -116,7 +94,9 @@ class Template(object):
     @classmethod
     def solve(cls, equations):
         unified, unknowns = cls.unify_unknowns(equations)
-        sol_set = linsolve([eq.full for eq in unified], unknowns)
+        # At this point all substitution is finished so simplify() is safe
+        simplified = [eq.full.simplify() for eq in unified]
+        sol_set = linsolve(simplified, unknowns)
         if sol_set.is_EmptySet:
             return None
 
@@ -128,8 +108,8 @@ class Template(object):
 
         return sol
 
-    @staticmethod
-    def unify_unknowns(equations):
+    @classmethod
+    def unify_unknowns(cls, equations):
         replacements = dict()
         for eq in equations:
             for s in eq.symbols:
@@ -142,7 +122,9 @@ class Template(object):
         new_equations = [eq.full for eq in equations]
         for i in range(len(new_equations)):
             for old, new in replacements.iteritems():
-                new_equations[i] = new_equations[i].replace(old, new)
+                new_equations[i] = cls.no_eval_replace(new_equations[i],
+                                                       old,
+                                                       new)
 
         return ([Equation(eq) for eq in new_equations],
                 list(set(replacements.values())))
@@ -156,6 +138,17 @@ class Template(object):
         for perm in itertools.permutations(b_syms):
             mappings.append(dict(zip(a_syms, perm)))
         return mappings
+
+    @classmethod
+    def no_eval_replace(cls, e, old, new):
+        if e == old:
+            return new
+
+        if not e.args:
+            return e
+
+        replaced = [cls.no_eval_replace(arg, old, new) for arg in e.args]
+        return e.func(*replaced, evaluate=False)
 
     def __hash__(self):
         return 1
@@ -185,7 +178,7 @@ class Template(object):
                     self_eq = self.solution[self_u].full
                     other_eq = other.solution[other_u].full
                     for old_n, new_n in n_map.iteritems():
-                        other_eq = other_eq.replace(old_n, new_n)
+                        other_eq = self.no_eval_replace(other_eq, old_n, new_n)
 
                     # If the equations are not equal after this
                     # transformation, then this combo of n_map, u_map
@@ -196,10 +189,6 @@ class Template(object):
                     # All equations match under this mapping
                     # Thus there exists a mapping s.t. the templates
                     # are exactly the same
-                    print(str(self))  # TODO
-                    print(str(other))
-                    print(n_map)
-                    print(u_map)
                     return True
 
         return False

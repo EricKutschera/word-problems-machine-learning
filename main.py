@@ -1,4 +1,5 @@
 import argparse
+import json
 
 from labeled_example import LabeledExample
 from nlp import NLP
@@ -36,7 +37,7 @@ def main():
         unique = set(templates)
         print('{} total and {} unique templates'.format(len(templates),
                                                         len(unique)))
-        print([str(t) for t in unique])
+        print(json.dumps([t.to_json() for t in unique]))
 
 
 if __name__ == '__main__':
