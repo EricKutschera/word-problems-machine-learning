@@ -33,7 +33,8 @@ def main():
         word_problems = [WordProblem(examples[i], natural_language[i])
                          for i in indices]
         templates = [wp.extract_template() for wp in word_problems]
-        print(len(templates))
+        print('{} total and {} unique templates'.format(len(templates),
+                                                        len(set(templates))))
 
 
 if __name__ == '__main__':

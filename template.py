@@ -1,32 +1,26 @@
 import json
 
-import sympy
+from sympy import Symbol, linsolve
 
 from equation import Equation
 
 
 class Template(object):
-    def __init__(self, equations):
+    def __init__(self, equations, solution):
         self.equations = equations
+        self.solution = solution
 
     @classmethod
     def from_equations_and_nlp(cls, equations, nlp):
-        # TODO(Eric): Still need to
-        # canonicalize by solving the system in terms of each
-        # slot. sympy.linsolve(equations, unknowns)
-        # that should enable a comparison between templates
-        # with the goal of finding a set of unique templates
         with_unknowns = cls.generalize_unknowns(equations)
         with_all_slots = cls.generalize_numbers(with_unknowns, nlp)
-        return Template(with_all_slots)
+        solution = cls.solve(with_all_slots)
+        return Template(with_all_slots, solution)
 
     @staticmethod
     def generalize_unknowns(equations):
         new_equations = [eq.full for eq in equations]
-        symbols = set()
-        for equation in equations:
-            for symbol in equation.symbols:
-                symbols.add(symbol)
+        symbols = {s for eq in equations for s in eq.symbols}
 
         symbol_to_unknown = dict()
         for i, symbol in enumerate(symbols):
@@ -39,7 +33,7 @@ class Template(object):
                     unknown = '{}_{}'.format(unknown_info['base'],
                                              unknown_info['occurences'])
                     unknown_info['occurences'] += 1
-                    replacement = sympy.Symbol(unknown)
+                    replacement = Symbol(unknown)
                     new_equations[i] = new_equations[i].replace(symbol,
                                                                 replacement)
 
@@ -72,7 +66,7 @@ class Template(object):
         count = 0
         for i, replacements in enumerate(replacements_by_eq):
             for replacement in replacements:
-                slot = sympy.Symbol('n_{}'.format(count))
+                slot = Symbol('n_{}'.format(count))
                 count += 1
 
                 syms = replacement.free_symbols
@@ -118,8 +112,50 @@ class Template(object):
         except ValueError:
             return None
 
+    @classmethod
+    def solve(cls, equations):
+        unified, unknowns = cls.unify_unknowns(equations)
+        sol_set = linsolve([eq.full for eq in unified], unknowns)
+        if sol_set.is_EmptySet:
+            return None
+
+        # The output of linsolve is either empty set or a set of size 1
+        raw_sol = list(sol_set)[0]
+        sol = dict()
+        for i, u in enumerate(unknowns):
+            sol[u] = raw_sol[i]
+
+        return sol
+
+    @staticmethod
+    def unify_unknowns(equations):
+        replacements = dict()
+        for eq in equations:
+            for s in eq.symbols:
+                splits = str(s).split('_')
+                if splits[0] != 'u':
+                    continue
+
+                replacements[s] = Symbol('u_{}'.format(splits[1]))
+
+        new_equations = [eq.full for eq in equations]
+        for i in range(len(new_equations)):
+            for old, new in replacements.iteritems():
+                new_equations[i] = new_equations[i].replace(old, new)
+
+        return ([Equation(eq) for eq in new_equations],
+                list(set(replacements.values())))
+
+    # TODO(Eric): should be possible to compare templates
+    # for equality now that each unknown is solved as
+    # an expression involving the number slots and constants
+    def __eq__(self, other):
+        return False
+
     def __str__(self):
         return json.dumps(self.to_json())
 
     def to_json(self):
-        return {'equations': [e.to_json() for e in self.equations]}
+        return {'equations': [e.to_json() for e in self.equations],
+                'solution': {str(k): str(v)
+                             for k, v in self.solution.iteritems()}}
