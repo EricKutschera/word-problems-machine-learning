@@ -3,7 +3,7 @@ import json
 
 from sympy import Symbol, linsolve
 
-from equation import Equation
+from equation import Equation, try_parse_float
 
 
 class Template(object):
@@ -16,6 +16,10 @@ class Template(object):
         with_unknowns = cls.generalize_unknowns(equations)
         with_all_slots = cls.generalize_numbers(with_unknowns, nlp)
         solution = cls.solve(with_all_slots)
+        if solution is None:
+            print('error solving template with equations: {} and nlp: {}'
+                  .format(json.dumps([e.to_json() for e in equations]),
+                          json.dumps(nlp.to_json())))
         return Template(with_all_slots, solution)
 
     @classmethod
@@ -58,9 +62,6 @@ class Template(object):
 
         return [Equation(eq) for eq in new_equations]
 
-    # TODO(Eric): for question 2239, the number 2340 appears
-    # in the text as '2,340.00 dollars'. It is not found by
-    # this function
     @classmethod
     def numbers_from_nlp(cls, nlp):
         tokens = list()
@@ -69,7 +70,7 @@ class Template(object):
 
         numbers = list()
         for t in tokens:
-            from_word = cls.try_parse_float(t.word)
+            from_word = try_parse_float(t.word)
             if from_word is not None:
                 numbers.append(from_word)
                 continue
@@ -77,19 +78,19 @@ class Template(object):
             # In question 2189 there is a blank in the text '___'
             # which is interpreted as a NUMBER but with no value
             if t.ner == 'NUMBER' and t.normalized_ner is not None:
-                from_ner = cls.try_parse_float(t.normalized_ner)
-                if from_ner is not None:
-                    numbers.append(from_ner)
+                from_number_ner = try_parse_float(t.normalized_ner)
+                if from_number_ner is not None:
+                    numbers.append(from_number_ner)
                     continue
 
-        return numbers
+            if t.ner == 'MONEY':
+                no_dollar_sign = t.normalized_ner.strip('$')
+                from_money_ner = try_parse_float(no_dollar_sign)
+                if from_money_ner is not None:
+                    numbers.append(from_money_ner)
+                    continue
 
-    @staticmethod
-    def try_parse_float(s):
-        try:
-            return float(s)
-        except ValueError:
-            return None
+        return list(set(numbers))
 
     @classmethod
     def solve(cls, equations):
