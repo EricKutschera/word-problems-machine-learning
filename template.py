@@ -75,6 +75,13 @@ class Template(object):
                 numbers.append(from_word)
                 continue
 
+            if '-' in t.word:
+                for part in t.word.split('-'):
+                    from_split = try_parse_float(part)
+                    if from_split is not None:
+                        numbers.append(from_split)
+                        continue
+
             # In question 2189 there is a blank in the text '___'
             # which is interpreted as a NUMBER but with no value
             if t.ner == 'NUMBER' and t.normalized_ner is not None:
@@ -90,7 +97,7 @@ class Template(object):
                     numbers.append(from_money_ner)
                     continue
 
-        return list(set(numbers))
+        return list({abs(n) for n in numbers})
 
     @classmethod
     def solve(cls, equations):
@@ -175,21 +182,23 @@ class Template(object):
         num_mappings = self.map_symbols(self_num_slots, other_num_slots)
         for n_map in num_mappings:
             for u_map in unk_mappings:
+                all_match = True
                 for self_u, other_u in u_map.iteritems():
                     self_eq = self.solution[self_u].full
                     other_eq = other.solution[other_u].full
-                    for old_n, new_n in n_map.iteritems():
-                        other_eq = self.no_eval_replace(other_eq, old_n, new_n)
+                    other_eq = other_eq.xreplace(n_map)
 
                     # If the equations are not equal after this
                     # transformation, then this combo of n_map, u_map
                     # will not work
-                    if self_eq != other_eq:
+                    if self_eq.simplify() != other_eq.simplify():
+                        all_match = False
                         break
 
-                    # All equations match under this mapping
-                    # Thus there exists a mapping s.t. the templates
-                    # are exactly the same
+                # All equations match under this mapping
+                # Thus there exists a mapping s.t. the templates
+                # are exactly the same
+                if all_match:
                     return True
 
         return False

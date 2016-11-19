@@ -8,7 +8,7 @@ from word_problem import WordProblem
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', choices=['print', 'process'],
+    parser.add_argument('action', choices=['print', 'process', 'unique'],
                         help='What to do with the data')
     parser.add_argument('-j', '--json', type=str,
                         default='data/questions.json',
@@ -18,6 +18,8 @@ def main():
                         help='directory path of NLP parses for each problem')
     parser.add_argument('-i', '--index', type=int, default=2598,
                         help='iIndex of a specific word problem')
+    parser.add_argument('-u', '--unique', type=int, default=[2598], nargs='+',
+                        help='iIndexs of word problems')
     args = parser.parse_args()
 
     if args.action == 'print':
@@ -38,6 +40,18 @@ def main():
         print('{} total and {} unique templates'.format(len(templates),
                                                         len(unique)))
         print(json.dumps([t.to_json() for t in unique]))
+
+    if args.action == 'unique':
+        examples = LabeledExample.read(args.json)
+        templates = list()
+        for index in args.unique:
+            example = examples[index]
+            natural_language = NLP.read(args.nlp, index)
+            wp = WordProblem(example, natural_language)
+            templates.append(wp.extract_template())
+
+        print(len(set(templates)))
+        print(json.dumps([t.to_json() for t in templates]))
 
 
 if __name__ == '__main__':
