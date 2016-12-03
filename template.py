@@ -1,7 +1,7 @@
 import itertools
 import json
 
-from sympy import Symbol, linsolve
+from sympy import Symbol, linsolve, Mul
 
 from text_to_int import text_to_int
 
@@ -143,7 +143,7 @@ class Template(object):
     def solve(cls, equations):
         unified, unknowns = cls.unify_unknowns(equations)
         # At this point all substitution is finished so simplify() is safe
-        simplified = [eq.full.simplify() for eq in unified]
+        simplified = [cls.simplify(eq.full) for eq in unified]
         sol_set = linsolve(simplified, unknowns)
         if sol_set.is_EmptySet:
             return None
@@ -186,6 +186,19 @@ class Template(object):
         for perm in itertools.permutations(b_syms):
             mappings.append(dict(zip(a_syms, perm)))
         return mappings
+
+    @staticmethod
+    def simplify(eq):
+        def is_mul_by_one(expr):
+            return expr.is_Mul and 1 in expr.args
+
+        def remove_mul_by_one(expr):
+            args = list(expr.args)
+            args.remove(1)
+            return Mul(*args)
+
+        eq = eq.replace(is_mul_by_one, remove_mul_by_one)
+        return eq.simplify()
 
     @classmethod
     def no_eval_replace(cls, e, old, new):
@@ -231,7 +244,9 @@ class Template(object):
                     # If the equations are not equal after this
                     # transformation, then this combo of n_map, u_map
                     # will not work
-                    if self_eq.simplify() != other_eq.simplify():
+                    self_simp = self.simplify(self_eq)
+                    other_simp = self.simplify(other_eq)
+                    if self_simp != other_simp:
                         all_match = False
                         break
 

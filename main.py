@@ -8,7 +8,8 @@ from word_problem import WordProblem
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', choices=['print', 'process', 'unique'],
+    parser.add_argument('action', choices=['print', 'find-template-set',
+                                           'count-unique'],
                         help='What to do with the data')
     parser.add_argument('-j', '--json', type=str,
                         default='data/questions.json',
@@ -20,6 +21,9 @@ def main():
                         help='iIndex of a specific word problem')
     parser.add_argument('-u', '--unique', type=int, default=[2598], nargs='+',
                         help='iIndexs of word problems')
+    parser.add_argument('-t', '--templates', type=str,
+                        default='unique_templates.json',
+                        help='file to write or read set of unique templates')
     args = parser.parse_args()
 
     if args.action == 'print':
@@ -30,20 +34,20 @@ def main():
         wp.extract_template()
         print(wp)
 
-    if args.action == 'process':
+    if args.action == 'find-template-set':
         examples = LabeledExample.read(args.json)
         indices = [e.index for e in examples.itervalues()]
         natural_language = {i: NLP.read(args.nlp, i) for i in indices}
         word_problems = [WordProblem(examples[i], natural_language[i])
                          for i in indices]
         templates = [wp.extract_template() for wp in word_problems]
-        print(json.dumps([wp.to_json() for wp in word_problems]))
         unique = set(templates)
         print('{} total and {} unique templates'.format(len(templates),
                                                         len(unique)))
-        print(json.dumps([t.to_json() for t in unique]))
+        with open(args.templates, 'wt') as f_handle:
+            f_handle.write(json.dumps([t.to_json() for t in unique]))
 
-    if args.action == 'unique':
+    if args.action == 'count-unique':
         examples = LabeledExample.read(args.json)
         templates = list()
         for index in args.unique:
