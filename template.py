@@ -3,6 +3,8 @@ import json
 
 from sympy import Symbol, linsolve
 
+from text_to_int import text_to_int
+
 from equation import Equation, try_parse_float
 
 
@@ -62,6 +64,34 @@ class Template(object):
 
         return [Equation(eq) for eq in new_equations]
 
+    @staticmethod
+    def clean(s):
+        for c in ['<', '>']:
+            s = s.replace(c, '')
+
+        return s
+
+    # These number words are fair game to replace in the text
+    # since they are a natural language representation of numerical
+    # operation. 'Twice' is equivalent to '2.0 times'
+    # This is distinct from the case of 'problem constants' like
+    # 0.01 for percent (%) problems
+    @staticmethod
+    def try_parse_number_word(w):
+        number_word_map = {'twice': 2.0,
+                           'triple': 3.0,
+                           'half': 0.5,
+                           'thrice': 3.0,
+                           'double': 2.0}
+        special = number_word_map.get(w.lower())
+        if special is not None:
+            return special
+
+        try:
+            return float(text_to_int(w))
+        except:
+            return None
+
     @classmethod
     def numbers_from_nlp(cls, nlp):
         tokens = list()
@@ -70,6 +100,11 @@ class Template(object):
 
         numbers = list()
         for t in tokens:
+            from_number_word = cls.try_parse_number_word(t.word)
+            if from_number_word is not None:
+                numbers.append(from_number_word)
+                continue
+
             from_word = try_parse_float(t.word)
             if from_word is not None:
                 numbers.append(from_word)
@@ -81,11 +116,16 @@ class Template(object):
                     if from_split is not None:
                         numbers.append(from_split)
                         continue
+                    from_split_word = cls.try_parse_number_word(part)
+                    if from_split_word is not None:
+                        numbers.append(from_split_word)
+                        continue
 
             # In question 2189 there is a blank in the text '___'
             # which is interpreted as a NUMBER but with no value
             if t.ner == 'NUMBER' and t.normalized_ner is not None:
-                from_number_ner = try_parse_float(t.normalized_ner)
+                cleaned = cls.clean(t.normalized_ner)
+                from_number_ner = try_parse_float(cleaned)
                 if from_number_ner is not None:
                     numbers.append(from_number_ner)
                     continue

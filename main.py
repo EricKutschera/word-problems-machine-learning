@@ -27,7 +27,8 @@ def main():
         example = examples[args.index]
         natural_language = NLP.read(args.nlp, args.index)
         wp = WordProblem(example, natural_language)
-        print(wp.extract_template())
+        wp.extract_template()
+        print(wp)
 
     if args.action == 'process':
         examples = LabeledExample.read(args.json)
@@ -36,6 +37,7 @@ def main():
         word_problems = [WordProblem(examples[i], natural_language[i])
                          for i in indices]
         templates = [wp.extract_template() for wp in word_problems]
+        print(json.dumps([wp.to_json() for wp in word_problems]))
         unique = set(templates)
         print('{} total and {} unique templates'.format(len(templates),
                                                         len(unique)))
