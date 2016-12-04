@@ -67,6 +67,10 @@ class Equation(object):
         return {'full': str(self.full),
                 'symbols': [str(s) for s in self.symbols]}
 
+    @staticmethod
+    def from_json(j):
+        return Equation(parse_expr(j['full']))
+
 
 # Exported helper function
 def try_parse_float(s):

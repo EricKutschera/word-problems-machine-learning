@@ -4,12 +4,14 @@ import json
 from labeled_example import LabeledExample
 from nlp import NLP
 from word_problem import WordProblem
+from derivation import derive_wp_for_all_templates
+from template import Template
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('action', choices=['print', 'find-template-set',
-                                           'count-unique'],
+                                           'count-unique', 'extract-features'],
                         help='What to do with the data')
     parser.add_argument('-j', '--json', type=str,
                         default='data/questions.json',
@@ -58,6 +60,21 @@ def main():
 
         print(len(set(templates)))
         print(json.dumps([t.to_json() for t in templates]))
+
+    if args.action == 'extract-features':
+        examples = LabeledExample.read(args.json)
+        example = examples[args.index]
+        natural_language = NLP.read(args.nlp, args.index)
+        wp = WordProblem(example, natural_language)
+
+        with open(args.templates, 'rt') as f_handle:
+            raw = f_handle.read()
+
+        unique_templates = [Template.from_json(j) for j in json.loads(raw)]
+        derivations = derive_wp_for_all_templates(wp, unique_templates)
+        print('{} derivations'.format(len(derivations)))
+        if derivations:
+            print(json.dumps(derivations[0].to_json()))
 
 
 if __name__ == '__main__':

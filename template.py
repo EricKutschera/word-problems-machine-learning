@@ -214,10 +214,6 @@ class Template(object):
     def __hash__(self):
         return 1
 
-    # TODO(Eric): should be possible to compare templates
-    # for equality now that each unknown is solved as
-    # an expression involving the number slots and constants
-    # Kushman paper says that there are 28 unique templates out of 514
     def __eq__(self, other):
         self_unks = set(self.solution.keys())
         other_unks = set(other.solution.keys())
@@ -265,3 +261,15 @@ class Template(object):
         return {'equations': [e.to_json() for e in self.equations],
                 'solution': {str(k): v.to_json()
                              for k, v in self.solution.iteritems()}}
+
+    @staticmethod
+    def from_json(j):
+        equations = list()
+        for eq_j in j['equations']:
+            equations.append(Equation.from_json(eq_j))
+
+        solution = dict()
+        for var, eq_j in j['solution'].iteritems():
+            solution[Symbol(var)] = Equation.from_json(eq_j)
+
+        return Template(equations, solution)
