@@ -72,9 +72,11 @@ def main():
 
         unique_templates = [Template.from_json(j) for j in json.loads(raw)]
         derivations = derive_wp_for_all_templates(wp, unique_templates)
-        print('{} derivations'.format(len(derivations)))
-        if derivations:
-            print(json.dumps(derivations[0].to_json()))
+        print(json.dumps(derivations.next().to_json()))
+        count = 1
+        for _ in derivations:
+            count += 1
+        print('{} derivations'.format(count))
 
 
 if __name__ == '__main__':
