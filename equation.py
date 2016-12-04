@@ -3,6 +3,8 @@ import json
 from sympy.parsing.sympy_parser import parse_expr
 from sympy import Symbol
 
+from util import try_parse_float
+
 
 class Equation(object):
     def __init__(self, full):
@@ -70,11 +72,3 @@ class Equation(object):
     @staticmethod
     def from_json(j):
         return Equation(parse_expr(j['full']))
-
-
-# Exported helper function
-def try_parse_float(s):
-    try:
-        return float(s)
-    except ValueError:
-        return None

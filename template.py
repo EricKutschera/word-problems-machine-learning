@@ -3,9 +3,7 @@ import json
 
 from sympy import Symbol, linsolve, Mul
 
-from text_to_int import text_to_int
-
-from equation import Equation, try_parse_float
+from equation import Equation
 
 
 class Template(object):
@@ -49,7 +47,7 @@ class Template(object):
 
     @classmethod
     def generalize_numbers(cls, equations, nlp):
-        numbers = cls.numbers_from_nlp(nlp)
+        numbers = nlp.numbers()
         new_equations = [eq.full for eq in equations]
 
         count = 0
@@ -63,81 +61,6 @@ class Template(object):
                                                            slot)
 
         return [Equation(eq) for eq in new_equations]
-
-    @staticmethod
-    def clean(s):
-        for c in ['<', '>']:
-            s = s.replace(c, '')
-
-        return s
-
-    # These number words are fair game to replace in the text
-    # since they are a natural language representation of numerical
-    # operation. 'Twice' is equivalent to '2.0 times'
-    # This is distinct from the case of 'problem constants' like
-    # 0.01 for percent (%) problems
-    @staticmethod
-    def try_parse_number_word(w):
-        number_word_map = {'twice': 2.0,
-                           'triple': 3.0,
-                           'half': 0.5,
-                           'thrice': 3.0,
-                           'double': 2.0}
-        special = number_word_map.get(w.lower())
-        if special is not None:
-            return special
-
-        try:
-            return float(text_to_int(w))
-        except:
-            return None
-
-    @classmethod
-    def numbers_from_nlp(cls, nlp):
-        tokens = list()
-        for s in nlp.sentences:
-            tokens.extend(s.tokens)
-
-        numbers = list()
-        for t in tokens:
-            from_number_word = cls.try_parse_number_word(t.word)
-            if from_number_word is not None:
-                numbers.append(from_number_word)
-                continue
-
-            from_word = try_parse_float(t.word)
-            if from_word is not None:
-                numbers.append(from_word)
-                continue
-
-            if '-' in t.word:
-                for part in t.word.split('-'):
-                    from_split = try_parse_float(part)
-                    if from_split is not None:
-                        numbers.append(from_split)
-                        continue
-                    from_split_word = cls.try_parse_number_word(part)
-                    if from_split_word is not None:
-                        numbers.append(from_split_word)
-                        continue
-
-            # In question 2189 there is a blank in the text '___'
-            # which is interpreted as a NUMBER but with no value
-            if t.ner == 'NUMBER' and t.normalized_ner is not None:
-                cleaned = cls.clean(t.normalized_ner)
-                from_number_ner = try_parse_float(cleaned)
-                if from_number_ner is not None:
-                    numbers.append(from_number_ner)
-                    continue
-
-            if t.ner == 'MONEY':
-                no_dollar_sign = t.normalized_ner.strip('$')
-                from_money_ner = try_parse_float(no_dollar_sign)
-                if from_money_ner is not None:
-                    numbers.append(from_money_ner)
-                    continue
-
-        return list({abs(n) for n in numbers})
 
     @classmethod
     def solve(cls, equations):

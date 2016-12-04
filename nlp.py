@@ -2,6 +2,10 @@ import json
 import os
 import xml.etree.ElementTree as ET
 
+from text_to_int import text_to_int
+
+from util import try_parse_float
+
 
 class NLP(object):
     FILE_FORMAT = 'question-{}.xml'
@@ -25,6 +29,89 @@ class NLP(object):
             sentences.append(Sentence.from_xml(sentence))
 
         return NLP(sentences)
+
+    # These number words are fair game to replace in the text
+    # since they are a natural language representation of numerical
+    # operation. 'Twice' is equivalent to '2.0 times'
+    # This is distinct from the case of 'problem constants' like
+    # 0.01 for percent (%) problems
+    @staticmethod
+    def try_parse_number_word(w):
+        number_word_map = {'twice': 2.0,
+                           'triple': 3.0,
+                           'half': 0.5,
+                           'thrice': 3.0,
+                           'double': 2.0}
+        special = number_word_map.get(w.lower())
+        if special is not None:
+            return special
+
+        try:
+            return float(text_to_int(w))
+        except:
+            return None
+
+    @staticmethod
+    def clean(s):
+        for c in ['<', '>']:
+            s = s.replace(c, '')
+
+        return s
+
+    def nouns(self):
+        nouns = list()
+        for s in self.sentences:
+            for t in s.tokens:
+                if t.pos in ['NN', 'NNS']:
+                    nouns.append(t.word)
+
+        return nouns
+
+    def numbers(self):
+        tokens = list()
+        for s in self.sentences:
+            tokens.extend(s.tokens)
+
+        numbers = list()
+        for t in tokens:
+            from_number_word = self.try_parse_number_word(t.word)
+            if from_number_word is not None:
+                numbers.append(from_number_word)
+                continue
+
+            from_word = try_parse_float(t.word)
+            if from_word is not None:
+                numbers.append(from_word)
+                continue
+
+            if '-' in t.word:
+                for part in t.word.split('-'):
+                    from_split = try_parse_float(part)
+                    if from_split is not None:
+                        numbers.append(from_split)
+                        continue
+                    from_split_word = self.try_parse_number_word(part)
+                    if from_split_word is not None:
+                        numbers.append(from_split_word)
+                        continue
+
+            # In question 2189 there is a blank in the text '___'
+            # which is interpreted as a NUMBER but with no value
+            if t.ner == 'NUMBER' and t.normalized_ner is not None:
+                cleaned = self.clean(t.normalized_ner)
+                from_number_ner = try_parse_float(cleaned)
+                if from_number_ner is not None:
+                    numbers.append(from_number_ner)
+                    continue
+
+            if t.ner == 'MONEY':
+                no_dollar_sign = t.normalized_ner.strip('$')
+                from_money_ner = try_parse_float(no_dollar_sign)
+                if from_money_ner is not None:
+                    numbers.append(from_money_ner)
+                    continue
+
+        return list({abs(n) for n in numbers})
 
     def __str__(self):
         return json.dumps(self.to_json())
