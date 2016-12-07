@@ -11,6 +11,13 @@ class Derivation(object):
         self.template_index = template_index
         self.word_problem = word_problem
 
+    def solve(self):
+        solutions = list()
+        for equation in self.template.solution.itervalues():
+            solutions.append(equation.full.xreplace(self.number_map))
+
+        return solutions
+
     def __str__(self):
         return json.dumps(self.to_json())
 

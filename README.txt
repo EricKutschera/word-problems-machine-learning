@@ -34,9 +34,6 @@ TODOs
   * find remaining features
     * find closest noun for number slot
       (to be used for features but is not a feature)
-    * find remaining solution features
-      * all solution numbers are positive
-      * all solution numbers are integer
     * find remaining single slot features
       * has the same lemma as a question object
       * is a question object

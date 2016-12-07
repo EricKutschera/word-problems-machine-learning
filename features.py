@@ -53,13 +53,21 @@ class FeatureExtractor(object):
     def find_slot_signatures(templates):
         pass
 
+    @staticmethod
+    def solution_features():
+        return [Feature.solution_all_integer(),
+                Feature.solution_all_positive()]
+
     # TODO
     def order_all_features(self):
         unigrams = [Feature.from_unigram(u) for u in self.unigrams]
         bigrams = [Feature.from_bigram(b) for b in self.bigrams]
         is_template = [Feature.from_template_index(i)
                        for i in range(self.template_count)]
-        return unigrams + bigrams + is_template
+        return (unigrams
+                + bigrams
+                + is_template
+                + self.solution_features())
 
     def extract(self, derivation):
         prepared = PreparedDerivation(derivation)
@@ -74,6 +82,7 @@ class PreparedDerivation(object):
         self.unigrams = derivation.word_problem.nlp.words()
         self.bigrams = derivation.word_problem.nlp.bigrams()
         self.template_index = derivation.template_index
+        self.solution = derivation.solve()
 
 
 class Features(object):
@@ -108,3 +117,15 @@ class Feature(object):
     def from_template_index(index):
         return Feature('is template {}'.format(index),
                        lambda prepared: prepared.template_index == index)
+
+    @staticmethod
+    def solution_all_integer():
+        return Feature('solution all integer',
+                       lambda prepared: all(round(v) == v
+                                            for v in prepared.solution))
+
+    @staticmethod
+    def solution_all_positive():
+        return Feature('solution all positive',
+                       lambda prepared: all(v > 0
+                                            for v in prepared.solution))
