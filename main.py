@@ -89,7 +89,6 @@ def main():
         feature_extractor = FeatureExtractor(unique_templates, word_problems)
         features = feature_extractor.extract(deriv)
         print(features)
-        print(feature_extractor.to_vector(features))
 
 
 if __name__ == '__main__':

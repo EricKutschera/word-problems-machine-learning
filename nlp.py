@@ -58,6 +58,14 @@ class NLP(object):
 
         return s
 
+    def words(self):
+        words = list()
+        for s in self.sentences:
+            for t in s.tokens:
+                words.append(t.word)
+
+        return words
+
     def nouns(self):
         nouns = list()
         for s in self.sentences:
