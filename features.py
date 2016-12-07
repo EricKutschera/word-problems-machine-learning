@@ -22,15 +22,21 @@ class FeatureExtractor(object):
 
         return sorted(unigrams)
 
-    # TODO
     @staticmethod
     def find_bigrams(word_problems):
-        pass
+        bigrams = set()
+        for wp in word_problems:
+            bigrams.update(set(wp.nlp.bigrams()))
 
-    # TODO
+        return sorted(bigrams)
+
     @staticmethod
     def find_lemmas(word_problems):
-        pass
+        lemmas = set()
+        for wp in word_problems:
+            lemmas.update(set(wp.nlp.lemmas()))
+
+        return sorted(lemmas)
 
     # TODO
     @staticmethod
@@ -49,7 +55,9 @@ class FeatureExtractor(object):
 
     # TODO
     def order_all_features(self):
-        return [Feature.from_unigram(u) for u in self.unigrams]
+        unigrams = [Feature.from_unigram(u) for u in self.unigrams]
+        bigrams = [Feature.from_bigram(b) for b in self.bigrams]
+        return unigrams + bigrams
 
     def extract(self, derivation):
         prepared = PreparedDerivation(derivation)
@@ -62,6 +70,7 @@ class PreparedDerivation(object):
        This makes it easy to apply each feature indicator function'''
     def __init__(self, derivation):
         self.unigrams = derivation.word_problem.nlp.words()
+        self.bigrams = derivation.word_problem.nlp.bigrams()
 
 
 class Features(object):
@@ -86,3 +95,8 @@ class Feature(object):
     def from_unigram(unigram):
         return Feature(unigram,
                        lambda prepared: unigram in prepared.unigrams)
+
+    @staticmethod
+    def from_bigram(bigram):
+        return Feature(str(bigram),
+                       lambda prepared: bigram in prepared.bigrams)

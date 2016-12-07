@@ -66,6 +66,23 @@ class NLP(object):
 
         return words
 
+    def lemmas(self):
+        lemmas = list()
+        for s in self.sentences:
+            for t in s.tokens:
+                lemmas.append(t.lemma)
+
+        return lemmas
+
+    def bigrams(self):
+        bigrams = list()
+        for s in self.sentences:
+            count = len(s.tokens)
+            for i in range(count - 1):
+                bigrams.append((s.tokens[i].word, s.tokens[i + 1].word))
+
+        return bigrams
+
     def nouns(self):
         nouns = list()
         for s in self.sentences:
