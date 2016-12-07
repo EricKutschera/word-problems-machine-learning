@@ -34,10 +34,6 @@ TODOs
   * find remaining features
     * find closest noun for number slot
       (to be used for features but is not a feature)
-    * find remaining document level features
-      * unigrams
-      * bigrams
-      * indicator for each template (is template 1, is template 2)
     * find remaining solution features
       * all solution numbers are positive
       * all solution numbers are integer

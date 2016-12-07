@@ -57,7 +57,9 @@ class FeatureExtractor(object):
     def order_all_features(self):
         unigrams = [Feature.from_unigram(u) for u in self.unigrams]
         bigrams = [Feature.from_bigram(b) for b in self.bigrams]
-        return unigrams + bigrams
+        is_template = [Feature.from_template_index(i)
+                       for i in range(self.template_count)]
+        return unigrams + bigrams + is_template
 
     def extract(self, derivation):
         prepared = PreparedDerivation(derivation)
@@ -71,6 +73,7 @@ class PreparedDerivation(object):
     def __init__(self, derivation):
         self.unigrams = derivation.word_problem.nlp.words()
         self.bigrams = derivation.word_problem.nlp.bigrams()
+        self.template_index = derivation.template_index
 
 
 class Features(object):
@@ -100,3 +103,8 @@ class Feature(object):
     def from_bigram(bigram):
         return Feature(str(bigram),
                        lambda prepared: bigram in prepared.bigrams)
+
+    @staticmethod
+    def from_template_index(index):
+        return Feature('is template {}'.format(index),
+                       lambda prepared: prepared.template_index == index)
