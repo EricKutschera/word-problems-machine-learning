@@ -4,6 +4,7 @@ import json
 from sympy import Symbol, linsolve, Mul
 
 from equation import Equation
+from slot_signatures import SingleSlotSignature
 
 
 class Template(object):
@@ -133,6 +134,27 @@ class Template(object):
 
         replaced = [cls.no_eval_replace(arg, old, new) for arg in e.args]
         return e.func(*replaced, evaluate=False)
+
+    def slots_by_equation(self):
+        slots = dict()
+        for i, eq in enumerate(self.equations):
+            slots[i] = [str(sym) for sym in eq.symbols]
+
+        return slots
+
+    def single_slot_signatures(self, template_index):
+        signatures = list()
+        for eq_index, symbols in self.slots_by_equation().iteritems():
+            signatures.extend([SingleSlotSignature(template_index,
+                                                   eq_index,
+                                                   symbol)
+                               for symbol in symbols])
+
+        return signatures
+
+    # TODO
+    def slot_pair_signatures(self, template_index):
+        return list()
 
     def __hash__(self):
         return 1

@@ -38,7 +38,6 @@ TODOs
       * has the same lemma as a question object
       * is a question object
       * is in a question sentence
-      * is equal to 1.0 or 2.0
       * is word lemma and is near particular constant in question
         (true if this slot lemma matches feature lemma
          and this slot is near the feature constant in the template)

@@ -1,5 +1,7 @@
 import json
 
+from sympy import Symbol
+
 
 class FeatureExtractor(object):
     def __init__(self, unique_templates, word_problems):
@@ -10,7 +12,9 @@ class FeatureExtractor(object):
         self.template_count = len(unique_templates)
         self.constants = self.find_constants(unique_templates)
         self.dependency_types = self.find_dependency_types(unique_templates)
-        self.slot_signatures = self.find_slot_signatures(unique_templates)
+        signatures = self.find_slot_signatures(unique_templates)
+        self.single_slot_signatures = signatures['single']
+        self.slot_pair_signatures = signatures['pair']
 
         self.ordered_features = self.order_all_features()
 
@@ -48,15 +52,31 @@ class FeatureExtractor(object):
     def find_dependency_types(templates):
         pass
 
-    # TODO
     @staticmethod
     def find_slot_signatures(templates):
-        pass
+        single_slots = set()
+        slot_pairs = set()
+        for template_index, template in enumerate(templates):
+            single_slots.update(set(
+                template.single_slot_signatures(template_index)))
+            slot_pairs.update(set(
+                template.slot_pair_signatures(template_index)))
+
+        return {'single': sorted(single_slots),
+                'pair': sorted(slot_pairs)}
 
     @staticmethod
     def solution_features():
         return [Feature.solution_all_integer(),
                 Feature.solution_all_positive()]
+
+    def single_slot_features(self):
+        features = list()
+        for signature in self.single_slot_signatures:
+            features.extend([Feature.slot_is_one(signature),
+                             Feature.slot_is_two(signature)])
+
+        return features
 
     # TODO
     def order_all_features(self):
@@ -67,7 +87,8 @@ class FeatureExtractor(object):
         return (unigrams
                 + bigrams
                 + is_template
-                + self.solution_features())
+                + self.solution_features()
+                + self.single_slot_features())
 
     def extract(self, derivation):
         prepared = PreparedDerivation(derivation)
@@ -79,10 +100,51 @@ class PreparedDerivation(object):
     '''Extracts and stores the relevant info for determining features.
        This makes it easy to apply each feature indicator function'''
     def __init__(self, derivation):
+        self.derivation = derivation
         self.unigrams = derivation.word_problem.nlp.words()
         self.bigrams = derivation.word_problem.nlp.bigrams()
         self.template_index = derivation.template_index
         self.solution = derivation.solve()
+        self.single_slots = self.initialize_single_slots()
+
+    def initialize_single_slots(self):
+        single_slots = dict()
+        template = self.derivation.template
+        signatures = template.single_slot_signatures(self.template_index)
+        for signature in signatures:
+            single_slots[signature] = self.initialize_single_slot(signature)
+
+        return single_slots
+
+    def initialize_single_slot(self, signature):
+        return SingleSlotData(self.number_for_signature(signature))
+
+    def number_for_signature(self, signature):
+        if self.derivation.template_index != signature.template_index:
+            return None
+
+        template = self.derivation.template
+        if len(template.equations) < signature.equation_index:
+            return None
+
+        equation = template.equations[signature.equation_index]
+        if Symbol(signature.symbol) not in equation.symbols:
+            return None
+
+        return self.derivation.number_map.get(Symbol(signature.symbol))
+
+
+class SingleSlotData(object):
+    '''Holds the relevant info needed to check each
+       single slot feature'''
+    def __init__(self, number):
+        self.number = number
+
+    def __str__(self):
+        return json.dumps(self.to_json())
+
+    def to_json(self):
+        return {'number': self.number}
 
 
 class Features(object):
@@ -129,3 +191,17 @@ class Feature(object):
         return Feature('solution all positive',
                        lambda prepared: all(v > 0
                                             for v in prepared.solution))
+
+    @staticmethod
+    def slot_is_one(slot_signature):
+        return Feature('{} is 1'.format(slot_signature),
+                       lambda prepared:
+                       slot_signature in prepared.single_slots
+                       and prepared.single_slots[slot_signature].number == 1)
+
+    @staticmethod
+    def slot_is_two(slot_signature):
+        return Feature('{} is 2'.format(slot_signature),
+                       lambda prepared:
+                       slot_signature in prepared.single_slots
+                       and prepared.single_slots[slot_signature].number == 2)
