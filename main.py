@@ -6,6 +6,7 @@ from nlp import NLP
 from word_problem import WordProblem
 from derivation import derive_wp_for_all_templates
 from template import Template
+from features import FeatureExtractor
 
 
 def main():
@@ -63,20 +64,32 @@ def main():
 
     if args.action == 'extract-features':
         examples = LabeledExample.read(args.json)
-        example = examples[args.index]
-        natural_language = NLP.read(args.nlp, args.index)
-        wp = WordProblem(example, natural_language)
+        indices = [e.index for e in examples.itervalues()]
+        natural_language = {i: NLP.read(args.nlp, i) for i in indices}
+        word_problems = [WordProblem(examples[i], natural_language[i])
+                         for i in indices]
+        wp = [wp for wp in word_problems
+              if wp.labeled_example.index == args.index][0]
 
         with open(args.templates, 'rt') as f_handle:
             raw = f_handle.read()
 
         unique_templates = [Template.from_json(j) for j in json.loads(raw)]
+
+        # TODO(Eric): using only 2 templates and 2 word problems for testing
+        unique_templates = unique_templates[:2]
+        word_problems = word_problems[:2]
+
         derivations = derive_wp_for_all_templates(wp, unique_templates)
-        print(json.dumps(derivations.next().to_json()))
-        count = 1
-        for _ in derivations:
-            count += 1
-        print('{} derivations'.format(count))
+        deriv = derivations.next()
+        print(deriv)
+        # TODO(Eric): determine all possible features up front
+        #             then for a given derivation, find all features for
+        #             that deriv and stick them in the right spot
+        feature_extractor = FeatureExtractor(unique_templates, word_problems)
+        features = feature_extractor.extract(deriv)
+        print(features)
+        print(feature_extractor.to_vector(features))
 
 
 if __name__ == '__main__':

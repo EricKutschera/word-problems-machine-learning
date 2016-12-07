@@ -66,7 +66,17 @@ TODOs
   * Find the vector of all possible features
     * define slot signatures to determine all possible
       single slot and slot pair signatures
-    * Choose an ordering for all features
+    * Choose an ordering for all features which
+      requires knowing up front all
+      * count of unique templates
+      * slot/slot pair signatures
+      * unigrams
+      * per single slot signature
+        * lemmas
+        * constants
+      * per slot pair signature
+        * word
+        * dependency type
 
   * Perform Parameter estimation for the weight vector theta
     * theta has one real valued weight for each
@@ -78,6 +88,7 @@ TODOs
       * focus on correct system of equations since that is what is referred
         to as supervised learning in the paper and gives better results
     * use L-BFGS to perform the maximization
+      https://docs.scipy.org/doc/scipy-0.18.1/reference/generated/scipy.optimize.fmin_l_bfgs_b.html#scipy.optimize.fmin_l_bfgs_b
 
   * Choose the most likely answer for a word problem
     * use beam search over the possible derivations for that word problem

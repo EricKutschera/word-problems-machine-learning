@@ -3,10 +3,12 @@ import itertools
 
 
 class Derivation(object):
-    def __init__(self, unknown_map, number_map, template, word_problem):
+    def __init__(self, unknown_map, number_map, template,
+                 template_index, word_problem):
         self.unknown_map = unknown_map
         self.number_map = number_map
         self.template = template
+        self.template_index = template_index
         self.word_problem = word_problem
 
     def __str__(self):
@@ -18,6 +20,7 @@ class Derivation(object):
                 'number_map': {str(k): v for k, v
                                in self.number_map.iteritems()},
                 'template': self.template.to_json(),
+                'template_index': self.template_index,
                 'word_problem': self.word_problem.to_json()}
 
 
@@ -30,8 +33,9 @@ def derive_wp_for_all_templates(wp, templates):
     #             Similarly for nouns
     numbers = wp.nlp.numbers()
     nouns = wp.nlp.nouns()
-    for template in templates:
-        for deriv in derive_wp_and_template(wp, template, numbers, nouns):
+    for template_index, template in enumerate(templates):
+        for deriv in derive_wp_and_template(wp, template, template_index,
+                                            numbers, nouns):
             yield deriv
 
 
@@ -39,7 +43,7 @@ def derive_wp_for_all_templates(wp, templates):
 #             millions of derivations for a template wp pair.
 #             might need to optimize the ordering of
 #             returned derivations to help the search later on
-def derive_wp_and_template(wp, template, numbers, nouns):
+def derive_wp_and_template(wp, template, template_index, numbers, nouns):
     slots = set()
     for eq in template.equations:
         slots.update(eq.symbols)
@@ -53,7 +57,8 @@ def derive_wp_and_template(wp, template, numbers, nouns):
                                              replacement=False):
             unknown_map = dict(zip(unknown_slots, noun_selection))
             number_map = dict(zip(number_slots, number_selection))
-            yield Derivation(unknown_map, number_map, template, wp)
+            yield Derivation(unknown_map, number_map, template,
+                             template_index, wp)
 
 
 def permutations(count, items, replacement=False):
