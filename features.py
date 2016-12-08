@@ -78,6 +78,13 @@ class FeatureExtractor(object):
 
         return features
 
+    def slot_pair_features(self):
+        features = list()
+        for signature in self.slot_pair_signatures:
+            features.append(Feature.slot_pair_in_same_sentence(signature))
+
+        return features
+
     # TODO
     def order_all_features(self):
         unigrams = [Feature.from_unigram(u) for u in self.unigrams]
@@ -88,7 +95,8 @@ class FeatureExtractor(object):
                 + bigrams
                 + is_template
                 + self.solution_features()
-                + self.single_slot_features())
+                + self.single_slot_features()
+                + self.slot_pair_features())
 
     def extract(self, derivation):
         prepared = PreparedDerivation(derivation)
@@ -106,6 +114,7 @@ class PreparedDerivation(object):
         self.template_index = derivation.template_index
         self.solution = derivation.solve()
         self.single_slots = self.initialize_single_slots()
+        self.slot_pairs = self.initialize_slot_pairs()
 
     def initialize_single_slots(self):
         single_slots = dict()
@@ -117,25 +126,39 @@ class PreparedDerivation(object):
         return single_slots
 
     def initialize_single_slot(self, signature):
-        return SingleSlotData(self.number_for_signature(signature))
+        return SingleSlotData(self.number_for_slot(signature))
 
-    def number_for_signature(self, signature):
-        if self.derivation.template_index != signature.template_index:
-            return None
-
+    def initialize_slot_pairs(self):
+        slot_pairs = dict()
         template = self.derivation.template
-        if len(template.equations) < signature.equation_index:
-            return None
+        signatures = template.slot_pair_signatures(self.template_index)
+        for signature in signatures:
+            slot_pairs[signature] = self.initialize_slot_pair(signature)
 
-        equation = template.equations[signature.equation_index]
-        if Symbol(signature.symbol) not in equation.symbols:
+        return slot_pairs
+
+    def initialize_slot_pair(self, signature):
+        sentence1 = self.sentence_for_slot(signature.slot1)
+        sentence2 = self.sentence_for_slot(signature.slot2)
+        return SlotPairData((sentence1, sentence2))
+
+    def number_for_slot(self, signature):
+        if (self.derivation.template_index != signature.template_index
+                or signature.symbol[0] != 'n'):
             return None
 
         sym = Symbol(signature.symbol)
-        if sym not in self.derivation.number_map:
+        return self.derivation.number_map[sym]['number']
+
+    def sentence_for_slot(self, signature):
+        if self.derivation.template_index != signature.template_index:
             return None
 
-        return self.derivation.number_map[sym]['number']
+        sym = Symbol(signature.symbol)
+        if signature.symbol[0] == 'n':
+            return self.derivation.number_map[sym]['sentence']
+
+        return self.derivation.unknown_map[sym]['sentence']
 
 
 class SingleSlotData(object):
@@ -149,6 +172,19 @@ class SingleSlotData(object):
 
     def to_json(self):
         return {'number': self.number}
+
+
+class SlotPairData(object):
+    '''Holds the relevant info needed to check each
+       slot pair feature'''
+    def __init__(self, sentences):
+        self.sentences = sentences
+
+    def __str__(self):
+        return json.dumps(self.to_json())
+
+    def to_json(self):
+        return {'sentences': self.sentences}
 
 
 class Features(object):
@@ -198,14 +234,33 @@ class Feature(object):
 
     @staticmethod
     def slot_is_one(slot_signature):
-        return Feature('{} is 1'.format(slot_signature),
-                       lambda prepared:
-                       slot_signature in prepared.single_slots
-                       and prepared.single_slots[slot_signature].number == 1)
+        def check(prepared):
+            slot_data = prepared.single_slots.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            return slot_data.number == 1
+
+        return Feature('{} is 1'.format(slot_signature), check)
 
     @staticmethod
     def slot_is_two(slot_signature):
-        return Feature('{} is 2'.format(slot_signature),
-                       lambda prepared:
-                       slot_signature in prepared.single_slots
-                       and prepared.single_slots[slot_signature].number == 2)
+        def check(prepared):
+            slot_data = prepared.single_slots.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            return slot_data.number == 2
+
+        return Feature('{} is 2'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_pair_in_same_sentence(slot_signature):
+        def check(prepared):
+            slot_data = prepared.slot_pairs.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            return slot_data.sentences[0] == slot_data.sentences[1]
+
+        return Feature('{} in same sentence'.format(slot_signature), check)

@@ -47,7 +47,6 @@ TODOs
       * Dependency path contains: (word, Dependency Type)
       * are the same word instance
       * have the same lemma
-      * in the same sentence
       * in the same phrase
       * connected by a preposition
       * numbers are equal
