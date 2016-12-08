@@ -14,7 +14,8 @@ class Derivation(object):
     def solve(self):
         solutions = list()
         for equation in self.template.solution.itervalues():
-            solutions.append(equation.full.xreplace(self.number_map))
+            subs = {k: v['number'] for k, v in self.number_map.iteritems()}
+            solutions.append(equation.full.xreplace(subs))
 
         return solutions
 
@@ -35,9 +36,6 @@ class Derivation(object):
 # are implemented as generators. This avoids a huge
 # memory requirement
 def derive_wp_for_all_templates(wp, templates):
-    # TODO(Eric): might need to map numbers to place in question
-    #             with a tuple of indices (sentence, token).
-    #             Similarly for nouns
     numbers = wp.nlp.numbers()
     nouns = wp.nlp.nouns()
     for template_index, template in enumerate(templates):
@@ -58,10 +56,13 @@ def derive_wp_and_template(wp, template, template_index, numbers, nouns):
     unknown_slots = [s for s in slots if 'u_' in str(s)]
     number_slots = [s for s in slots if 'n_' in str(s)]
 
-    for noun_selection in permutations(len(unknown_slots), nouns,
-                                       replacement=True):
-        for number_selection in permutations(len(number_slots), numbers,
-                                             replacement=False):
+    for noun_indices in permutations(len(unknown_slots), range(len(nouns)),
+                                     replacement=True):
+        for number_indices in permutations(len(number_slots),
+                                           range(len(numbers)),
+                                           replacement=False):
+            noun_selection = [nouns[i] for i in noun_indices]
+            number_selection = [numbers[i] for i in number_indices]
             unknown_map = dict(zip(unknown_slots, noun_selection))
             number_map = dict(zip(number_slots, number_selection))
             yield Derivation(unknown_map, number_map, template,

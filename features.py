@@ -131,7 +131,11 @@ class PreparedDerivation(object):
         if Symbol(signature.symbol) not in equation.symbols:
             return None
 
-        return self.derivation.number_map.get(Symbol(signature.symbol))
+        sym = Symbol(signature.symbol)
+        if sym not in self.derivation.number_map:
+            return None
+
+        return self.derivation.number_map[sym]['number']
 
 
 class SingleSlotData(object):

@@ -49,6 +49,7 @@ class Template(object):
     @classmethod
     def generalize_numbers(cls, equations, nlp):
         numbers = nlp.numbers()
+        numbers = list({d['number'] for d in numbers})
         new_equations = [eq.full for eq in equations]
 
         count = 0
