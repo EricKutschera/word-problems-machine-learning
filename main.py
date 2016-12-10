@@ -84,6 +84,8 @@ def main():
 
         # TODO(Eric): using only 2 templates and 2 word problems for testing
         unique_templates = unique_templates[:2]
+        # unique_templates = [u for u in unique_templates
+        #                     if any([e.constants() for e in u.equations])][:2]
         word_problems = word_problems[:2]
 
         derivations = derive_wp_for_all_templates(wp, unique_templates)

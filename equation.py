@@ -62,6 +62,20 @@ class Equation(object):
         replaced = [cls.symbols_to_numbers(arg) for arg in e.args]
         return e.func(*replaced, evaluate=False)
 
+    def constants(self):
+        return self.constants_for_eq(self.full)
+
+    def constants_for_eq(self, eq):
+        constants = set()
+        for arg in eq.args:
+            if arg.is_number:
+                if abs(arg) != 1.0:
+                    constants.add(abs(float(arg)))
+            else:
+                constants.update(self.constants_for_eq(arg))
+
+        return constants
+
     def __str__(self):
         return json.dumps(self.to_json())
 

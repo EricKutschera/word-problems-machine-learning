@@ -32,14 +32,9 @@ python main.py extract-features -i {question index}
 
 TODOs
   * find remaining features
-    * find closest noun for number slot
-      (to be used for features but is not a feature)
     * find remaining single slot features
       * has the same lemma as a question object
       * is a question object
-      * is word lemma and is near particular constant in question
-        (true if this slot lemma matches feature lemma
-         and this slot is near the feature constant in the template)
     * find remaining slot pair features
       * Dependency path contains: word
       * Dependency path contains: Dependency Type

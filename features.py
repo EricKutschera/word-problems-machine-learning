@@ -42,10 +42,14 @@ class FeatureExtractor(object):
 
         return sorted(lemmas)
 
-    # TODO
     @staticmethod
     def find_constants(templates):
-        pass
+        constants = set()
+        for template in templates:
+            for equation in template.equations:
+                constants.update(equation.constants())
+
+        return constants
 
     # TODO
     @staticmethod
@@ -70,13 +74,24 @@ class FeatureExtractor(object):
         return [Feature.solution_all_integer(),
                 Feature.solution_all_positive()]
 
+    def lemma_constant_features(self, signature):
+        features = list()
+        for constant in self.constants:
+            for lemma in self.lemmas:
+                features.append(Feature.slot_lemma_near_constant(signature,
+                                                                 lemma,
+                                                                 constant))
+
+        return features
+
     def single_slot_features(self):
         features = list()
         for signature in self.single_slot_signatures:
             features.extend(
                 [Feature.slot_is_one(signature),
                  Feature.slot_is_two(signature),
-                 Feature.slot_is_in_question_or_command(signature)])
+                 Feature.slot_is_in_question_or_command(signature)]
+                + self.lemma_constant_features(signature))
 
         return features
 
@@ -117,6 +132,8 @@ class PreparedDerivation(object):
         self.solution = derivation.solve()
         self.questions = derivation.word_problem.nlp.questions()
         self.commands = derivation.word_problem.nlp.commands()
+        self.constants = {i: e.constants()
+                          for i, e in enumerate(derivation.template.equations)}
         self.single_slots = self.initialize_single_slots()
         self.slot_pairs = self.initialize_slot_pairs()
 
@@ -130,8 +147,12 @@ class PreparedDerivation(object):
         return single_slots
 
     def initialize_single_slot(self, signature):
+        s_index = self.sentence_index_for_slot(signature)
+        t_index = self.token_index_for_slot(signature)
+        token = self.closest_noun_token_from_indices(s_index, t_index)
         return SingleSlotData(self.number_for_slot(signature),
-                              self.sentence_for_slot(signature))
+                              s_index,
+                              token.lemma)
 
     def initialize_slot_pairs(self):
         slot_pairs = dict()
@@ -143,8 +164,8 @@ class PreparedDerivation(object):
         return slot_pairs
 
     def initialize_slot_pair(self, signature):
-        sentence1 = self.sentence_for_slot(signature.slot1)
-        sentence2 = self.sentence_for_slot(signature.slot2)
+        sentence1 = self.sentence_index_for_slot(signature.slot1)
+        sentence2 = self.sentence_index_for_slot(signature.slot2)
         return SlotPairData((sentence1, sentence2))
 
     def number_for_slot(self, signature):
@@ -155,30 +176,56 @@ class PreparedDerivation(object):
         sym = Symbol(signature.symbol)
         return self.derivation.number_map[sym]['number']
 
-    def sentence_for_slot(self, signature):
+    def location_for_slot(self, signature):
         if self.derivation.template_index != signature.template_index:
             return None
 
         sym = Symbol(signature.symbol)
         if signature.symbol[0] == 'n':
-            return self.derivation.number_map[sym]['sentence']
+            return self.derivation.number_map[sym]
+        else:
+            return self.derivation.unknown_map[sym]
 
-        return self.derivation.unknown_map[sym]['sentence']
+    def sentence_index_for_slot(self, signature):
+        return self.location_for_slot(signature)['sentence']
+
+    def token_index_for_slot(self, signature):
+        return self.location_for_slot(signature)['token']
+
+    def token_from_indices(self, sentence_index, token_index):
+        return (self.derivation.word_problem.nlp.sentences[sentence_index]
+                .tokens[token_index])
+
+    # TODO(Eric): Using the "parse tree" instead of linear token distance
+    #             would be a better definition of "close"
+    def closest_noun_token_from_indices(self, sentence_index, token_index):
+        nlp = self.derivation.word_problem.nlp
+        sentence = nlp.sentences[sentence_index]
+        tokens = sentence.tokens
+        search_order = sorted(range(len(tokens)),
+                              key=lambda n: abs(token_index - n))
+        for i in search_order:
+            if tokens[i].pos in ['NN', 'NNS']:
+                return tokens[i]
+
+        raise Exception('no noun in: {}'.format(sentence.as_text()))
 
 
 class SingleSlotData(object):
     '''Holds the relevant info needed to check each
        single slot feature'''
-    def __init__(self, number, sentence):
+    def __init__(self, number, sentence, lemma):
         self.number = number
         self.sentence = sentence
+        self.lemma = lemma
 
     def __str__(self):
         return json.dumps(self.to_json())
 
     def to_json(self):
         return {'number': self.number,
-                'sentence': self.sentence}
+                'sentence': self.sentence,
+                'lemma': self.lemma}
 
 
 class SlotPairData(object):
@@ -273,6 +320,22 @@ class Feature(object):
 
         return Feature('{} is in question or command'
                        .format(slot_signature), check)
+
+    @staticmethod
+    def slot_lemma_near_constant(slot_signature, lemma, constant):
+        def check(prepared):
+            slot_data = prepared.single_slots.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            # TODO(Eric): could come up with a better definition of
+            #             "close to constant" than "in same equation"
+            return (slot_data.lemma == lemma
+                    and constant in prepared.constants[
+                        slot_signature.equation_index])
+
+        return Feature('{} has lemma {} and near constant {}'
+                       .format(slot_signature, lemma, constant), check)
 
     @staticmethod
     def slot_pair_in_same_sentence(slot_signature):
