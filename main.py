@@ -92,10 +92,10 @@ def main():
         word_problems = word_problems[:2]
 
         feature_extractor = FeatureExtractor(unique_templates, word_problems)
-        parameters = optimize_parameters(feature_extractor, word_problems,
+        classifier = optimize_parameters(feature_extractor, word_problems,
                                          unique_templates)
         with open(args.parameters, 'wt') as f_handle:
-            f_handle.write(json.dumps(parameters.to_json()))
+            f_handle.write(json.dumps(classifier.to_json()))
 
 
 if __name__ == '__main__':
