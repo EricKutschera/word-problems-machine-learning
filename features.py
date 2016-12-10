@@ -102,7 +102,11 @@ class FeatureExtractor(object):
         for signature in self.slot_pair_signatures:
             features.extend(
                 [Feature.slot_pair_in_same_sentence(signature),
-                 Feature.slot_pair_are_same_token(signature)])
+                 Feature.slot_pair_are_same_token(signature),
+                 Feature.slot_pair_have_same_lemma(signature),
+                 Feature.slot_pair_are_same_number(signature),
+                 Feature.slot_pair_a_greater_than_b(signature),
+                 Feature.slot_pair_a_less_than_b(signature)])
 
         return features
 
@@ -174,7 +178,8 @@ class PreparedDerivation(object):
     def initialize_single_slot(self, signature):
         s_index = self.sentence_index_for_slot(signature)
         t_index = self.token_index_for_slot(signature)
-        token = self.closest_noun_token_from_indices(s_index, t_index)
+        s_index, t_index, token = self.closest_noun_token_from_indices(
+            s_index, t_index)
         return SingleSlotData(self.number_for_slot(signature),
                               s_index,
                               t_index,
@@ -233,7 +238,7 @@ class PreparedDerivation(object):
                               key=lambda n: abs(token_index - n))
         for i in search_order:
             if tokens[i].pos in ['NN', 'NNS']:
-                return tokens[i]
+                return (sentence_index, token_index, tokens[i])
 
         raise Exception('no noun in: {}'.format(sentence.as_text()))
 
@@ -418,3 +423,61 @@ class Feature(object):
                     and s1.token == s2.token)
 
         return Feature('{} are same token'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_pair_have_same_lemma(slot_signature):
+        def check(prepared):
+            slot_data = prepared.slot_pairs.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            s1 = slot_data.slot1_data
+            s2 = slot_data.slot2_data
+            return s1.lemma == s2.lemma
+
+        return Feature('{} are same lemma'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_pair_are_same_number(slot_signature):
+        def check(prepared):
+            slot_data = prepared.slot_pairs.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            s1 = slot_data.slot1_data
+            s2 = slot_data.slot2_data
+            return (s1.number is not None
+                    and s2.number is not None
+                    and s1.number == s2.number)
+
+        return Feature('{} are same number'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_pair_a_greater_than_b(slot_signature):
+        def check(prepared):
+            slot_data = prepared.slot_pairs.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            s1 = slot_data.slot1_data
+            s2 = slot_data.slot2_data
+            return (s1.number is not None
+                    and s2.number is not None
+                    and s1.number > s2.number)
+
+        return Feature('{} a > b'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_pair_a_less_than_b(slot_signature):
+        def check(prepared):
+            slot_data = prepared.slot_pairs.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            s1 = slot_data.slot1_data
+            s2 = slot_data.slot2_data
+            return (s1.number is not None
+                    and s2.number is not None
+                    and s1.number < s2.number)
+
+        return Feature('{} a < b'.format(slot_signature), check)

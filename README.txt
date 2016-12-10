@@ -36,11 +36,8 @@ TODOs
       * Dependency path contains: word
       * Dependency path contains: Dependency Type
       * Dependency path contains: (word, Dependency Type)
-      * have the same lemma
       * in the same phrase
       * connected by a preposition
-      * numbers are equal
-      * one number is larger than the other
       * equivalent relationship ?->
         (slot pair) pair relationships?
 
