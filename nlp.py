@@ -58,6 +58,12 @@ class NLP(object):
 
         return s
 
+    def questions(self):
+        return {i: s for i, s in enumerate(self.sentences) if s.is_question()}
+
+    def commands(self):
+        return {i: s for i, s in enumerate(self.sentences) if s.is_command()}
+
     def words(self):
         words = list()
         for s in self.sentences:
@@ -170,6 +176,19 @@ class Sentence(object):
             dependencies.extend(Dependency.from_xml(d))
 
         return Sentence(tokens, parse, dependencies)
+
+    def as_text(self):
+        return ' '.join([t.word for t in self.tokens])
+
+    def is_question(self):
+        for t in self.tokens:
+            if t.word == '?':
+                return True
+
+    def is_command(self):
+        first = self.tokens[0]
+        return (first.pos == 'VB'
+                and first.word.lower() == first.lemma.lower())
 
     def __str__(self):
         return json.dumps(self.to_json())

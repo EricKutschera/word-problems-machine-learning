@@ -73,8 +73,10 @@ class FeatureExtractor(object):
     def single_slot_features(self):
         features = list()
         for signature in self.single_slot_signatures:
-            features.extend([Feature.slot_is_one(signature),
-                             Feature.slot_is_two(signature)])
+            features.extend(
+                [Feature.slot_is_one(signature),
+                 Feature.slot_is_two(signature),
+                 Feature.slot_is_in_question_or_command(signature)])
 
         return features
 
@@ -113,6 +115,8 @@ class PreparedDerivation(object):
         self.bigrams = derivation.word_problem.nlp.bigrams()
         self.template_index = derivation.template_index
         self.solution = derivation.solve()
+        self.questions = derivation.word_problem.nlp.questions()
+        self.commands = derivation.word_problem.nlp.commands()
         self.single_slots = self.initialize_single_slots()
         self.slot_pairs = self.initialize_slot_pairs()
 
@@ -126,7 +130,8 @@ class PreparedDerivation(object):
         return single_slots
 
     def initialize_single_slot(self, signature):
-        return SingleSlotData(self.number_for_slot(signature))
+        return SingleSlotData(self.number_for_slot(signature),
+                              self.sentence_for_slot(signature))
 
     def initialize_slot_pairs(self):
         slot_pairs = dict()
@@ -164,14 +169,16 @@ class PreparedDerivation(object):
 class SingleSlotData(object):
     '''Holds the relevant info needed to check each
        single slot feature'''
-    def __init__(self, number):
+    def __init__(self, number, sentence):
         self.number = number
+        self.sentence = sentence
 
     def __str__(self):
         return json.dumps(self.to_json())
 
     def to_json(self):
-        return {'number': self.number}
+        return {'number': self.number,
+                'sentence': self.sentence}
 
 
 class SlotPairData(object):
@@ -253,6 +260,19 @@ class Feature(object):
             return slot_data.number == 2
 
         return Feature('{} is 2'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_is_in_question_or_command(slot_signature):
+        def check(prepared):
+            slot_data = prepared.single_slots.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            return (slot_data.sentence in prepared.questions
+                    or slot_data.sentence in prepared.commands)
+
+        return Feature('{} is in question or command'
+                       .format(slot_signature), check)
 
     @staticmethod
     def slot_pair_in_same_sentence(slot_signature):

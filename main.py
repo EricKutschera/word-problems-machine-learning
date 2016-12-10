@@ -36,6 +36,12 @@ def main():
         wp = WordProblem(example, natural_language)
         wp.extract_template()
         print(wp)
+        print('questions: {}'
+              .format([s.as_text()
+                       for s in wp.nlp.questions().itervalues()]))
+        print('commands: {}'
+              .format([s.as_text()
+                       for s in wp.nlp.commands().itervalues()]))
 
     if args.action == 'find-template-set':
         examples = LabeledExample.read(args.json)
