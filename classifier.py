@@ -4,6 +4,7 @@ import json
 import numpy
 
 from features import Features
+from beam import beam_search
 
 
 class Classifier(object):
@@ -19,9 +20,34 @@ class Classifier(object):
         array = numpy.array(features.instance)
         return math.exp(array.dot(self.parameters))
 
-    # TODO
     def log_likelihood(self, word_problems, unique_templates):
-        return 0.5
+
+        def score_func(derivation):
+            return math.log(self.probability_of_derivation(derivation))
+
+        def final_evaluation_func(derivations):
+            result = 0
+            for d in derivations:
+                result += score_func(d)
+
+            return result
+
+        total = 0
+        for wp in word_problems:
+
+            def validator_func(d):
+                correct_equations = wp.labeled_example.equations
+                return self.can_derive_correct_equations(d, correct_equations)
+
+            total += beam_search(wp, unique_templates, score_func,
+                                 validator_func, final_evaluation_func)
+
+        return total
+
+    # TODO
+    @staticmethod
+    def can_derive_correct_equations(derivation, correct_equations):
+        return True
 
     # TODO
     def log_likelihood_gradient(self, word_problems, unique_templates):
