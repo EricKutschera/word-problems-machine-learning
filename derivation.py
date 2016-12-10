@@ -1,15 +1,67 @@
 import json
-import itertools
+from copy import deepcopy
 
 
 class Derivation(object):
     def __init__(self, unknown_map, number_map, template,
-                 template_index, word_problem):
+                 template_index, word_problem, nouns, numbers):
         self.unknown_map = unknown_map
         self.number_map = number_map
         self.template = template
         self.template_index = template_index
         self.word_problem = word_problem
+        self.nouns = nouns
+        self.numbers = numbers
+
+    def copy(self):
+        return Derivation(deepcopy(self.unknown_map),
+                          deepcopy(self.number_map),
+                          self.template, self.template_index,
+                          self.word_problem, self.nouns,
+                          deepcopy(self.numbers))
+
+    def all_unknowns_filled(self):
+        return not any(v is None for v in self.unknown_map.itervalues())
+
+    def all_numbers_filled(self):
+        return not any(v is None for v in self.number_map.itervalues())
+
+    def is_complete(self):
+        self.all_unknowns_filled() and self.all_numbers_filled()
+
+    def all_ways_to_fill_next_slot(self):
+        if not self.all_numbers_filled():
+            return self.all_ways_to_fill_next_number()
+
+        if not self.all_unknowns_filled():
+            return self.all_ways_to_fill_next_unknown()
+
+        return None
+
+    def all_ways_to_fill_next_number(self):
+        next_number_slot = sorted(s for s in self.number_map
+                                  if self.number_map[s] is None)[0]
+
+        derivations = list()
+        for number in self.numbers:
+            derivation = self.copy()
+            derivation.number_map[next_number_slot] = number
+            derivation.numbers.remove(number)
+            derivations.append(derivation)
+
+        return derivations
+
+    def all_ways_to_fill_next_unknown(self):
+        next_unknown_slot = sorted(s for s in self.unknown_map
+                                   if self.unknown_map[s] is None)[0]
+
+        derivations = list()
+        for noun in self.nouns:
+            derivation = self.copy()
+            derivation.unknown_map[next_unknown_slot] = noun
+            derivations.append(derivation)
+
+        return derivations
 
     def solve(self):
         solutions = list()
@@ -29,55 +81,28 @@ class Derivation(object):
                                in self.number_map.iteritems()},
                 'template': self.template.to_json(),
                 'template_index': self.template_index,
-                'word_problem': self.word_problem.to_json()}
+                'word_problem': self.word_problem.to_json(),
+                'nouns': self.nouns,
+                'numbers': self.numbers}
 
 
-# TODO(Eric): this should not be necessary since we use beam
-#             search and do not look at all derivations
-# Since there are a lot of derivations, these functions
-# are implemented as generators. This avoids a huge
-# memory requirement
-def derive_wp_for_all_templates(wp, templates):
+def initialize_partial_derivations_for_all_templates(wp, templates):
     numbers = wp.nlp.numbers()
     nouns = wp.nlp.nouns()
+    partial_derivations = list()
     for template_index, template in enumerate(templates):
-        for deriv in derive_wp_and_template(wp, template, template_index,
-                                            numbers, nouns):
-            yield deriv
+        slots = set()
+        for eq in template.equations:
+            slots.update(eq.symbols)
 
+        unknown_slots = [s for s in slots if 'u_' in str(s)]
+        number_slots = [s for s in slots if 'n_' in str(s)]
+        unknown_map = {u: None for u in unknown_slots}
+        number_map = {n: None for n in number_slots}
 
-# TODO(Eric): This is a very expensive operation that can find
-#             millions of derivations for a template wp pair.
-#             might need to optimize the ordering of
-#             returned derivations to help the search later on
-def derive_wp_and_template(wp, template, template_index, numbers, nouns):
-    slots = set()
-    for eq in template.equations:
-        slots.update(eq.symbols)
+        partial_derivations.append(Derivation(unknown_map, number_map,
+                                              template, template_index,
+                                              wp, nouns,
+                                              deepcopy(numbers)))
 
-    unknown_slots = [s for s in slots if 'u_' in str(s)]
-    number_slots = [s for s in slots if 'n_' in str(s)]
-
-    for noun_indices in permutations(len(unknown_slots), range(len(nouns)),
-                                     replacement=True):
-        for number_indices in permutations(len(number_slots),
-                                           range(len(numbers)),
-                                           replacement=False):
-            noun_selection = [nouns[i] for i in noun_indices]
-            number_selection = [numbers[i] for i in number_indices]
-            unknown_map = dict(zip(unknown_slots, noun_selection))
-            number_map = dict(zip(number_slots, number_selection))
-            yield Derivation(unknown_map, number_map, template,
-                             template_index, wp)
-
-
-def permutations(count, items, replacement=False):
-    if not replacement:
-        return itertools.permutations(items, count)
-
-    result = set()
-    for comb in itertools.combinations_with_replacement(items, count):
-        for perm in itertools.permutations(comb):
-            result.add(perm)
-
-    return result
+    return partial_derivations

@@ -5,6 +5,8 @@ from scipy.optimize import fmin_l_bfgs_b
 
 from features import Features
 
+MAX_ITERATIONS = 50
+
 
 class Parameters(object):
     def __init__(self, weights, features):
@@ -26,6 +28,8 @@ def optimize_parameters(feature_extractor, word_problems, unique_templates):
     features = Features(ordered_features, [0 for _ in range(feature_count)])
     weights = numpy.ones(feature_count)
 
+    # TODO(Eric): add regularization
+    #             L^{2} norm and \lambda = 0.1
     def func_to_min(parameters):
         return -log_likelihood(word_problems, unique_templates, parameters)
 
@@ -34,7 +38,8 @@ def optimize_parameters(feature_extractor, word_problems, unique_templates):
                                        parameters)
 
     optimal, final_value, details = fmin_l_bfgs_b(func_to_min, weights,
-                                                  fprime=gradient)
+                                                  fprime=gradient,
+                                                  maxiter=MAX_ITERATIONS)
     print('final_value: {}'.format(final_value))
     print('details: {}'.format(details))
     return Parameters(optimal, features)
