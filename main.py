@@ -37,10 +37,10 @@ def main():
         wp.extract_template()
         print(wp)
         print('questions: {}'
-              .format([s.as_text()
+              .format([(s.as_text(), s.object_of_sentence())
                        for s in wp.nlp.questions().itervalues()]))
         print('commands: {}'
-              .format([s.as_text()
+              .format([(s.as_text(), s.object_of_sentence())
                        for s in wp.nlp.commands().itervalues()]))
 
     if args.action == 'find-template-set':

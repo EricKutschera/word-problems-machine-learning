@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 from text_to_int import text_to_int
 
 from util import try_parse_float
+from parse_tree import ParseTree
 
 
 class NLP(object):
@@ -189,6 +190,28 @@ class Sentence(object):
         first = self.tokens[0]
         return (first.pos == 'VB'
                 and first.word.lower() == first.lemma.lower())
+
+    def object_of_sentence(self):
+        return self.search_for_object(self.parse_tree(), 0)
+
+    @classmethod
+    def search_for_object(cls, tree, index):
+        if tree.value in ['PP']:
+            return (None, -1)
+
+        if tree.value in ['NN', 'NNS']:
+            return (tree.children[0].value, index)
+
+        for child in tree.children:
+            v = cls.search_for_object(child, index)
+            index += child.token_count()
+            if v[0] is not None:
+                return v
+
+        return (None, -1)
+
+    def parse_tree(self):
+        return ParseTree.from_parse_string(self.parse)
 
     def __str__(self):
         return json.dumps(self.to_json())
