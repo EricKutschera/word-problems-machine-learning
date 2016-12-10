@@ -90,7 +90,9 @@ class FeatureExtractor(object):
             features.extend(
                 [Feature.slot_is_one(signature),
                  Feature.slot_is_two(signature),
-                 Feature.slot_is_in_question_or_command(signature)]
+                 Feature.slot_is_in_question_or_command(signature),
+                 Feature.slot_is_ques_or_command_object(signature),
+                 Feature.slot_has_lemma_of_ques_or_command_object(signature)]
                 + self.lemma_constant_features(signature))
 
         return features
@@ -132,10 +134,31 @@ class PreparedDerivation(object):
         self.solution = derivation.solve()
         self.questions = derivation.word_problem.nlp.questions()
         self.commands = derivation.word_problem.nlp.commands()
+        self.ques_and_command_objects = self.initialize_sentence_objects()
+        self.ques_and_command_lemmas = {t.lemma
+                                        for t in self.ques_and_command_objects
+                                        .itervalues()}
         self.constants = {i: e.constants()
                           for i, e in enumerate(derivation.template.equations)}
         self.single_slots = self.initialize_single_slots()
         self.slot_pairs = self.initialize_slot_pairs()
+
+    def initialize_sentence_objects(self):
+        sentences = dict()
+        for i, s in self.questions.iteritems():
+            sentences[i] = s
+
+        for i, s in self.commands.iteritems():
+            sentences[i] = s
+
+        objects = dict()
+        for s_index, s in sentences.iteritems():
+            _, t_index = s.object_of_sentence()
+            objects[(s_index, t_index)] = (self.derivation.word_problem.nlp
+                                           .sentences[s_index]
+                                           .tokens[t_index])
+
+        return objects
 
     def initialize_single_slots(self):
         single_slots = dict()
@@ -152,6 +175,7 @@ class PreparedDerivation(object):
         token = self.closest_noun_token_from_indices(s_index, t_index)
         return SingleSlotData(self.number_for_slot(signature),
                               s_index,
+                              t_index,
                               token.lemma)
 
     def initialize_slot_pairs(self):
@@ -214,9 +238,10 @@ class PreparedDerivation(object):
 class SingleSlotData(object):
     '''Holds the relevant info needed to check each
        single slot feature'''
-    def __init__(self, number, sentence, lemma):
+    def __init__(self, number, sentence, token, lemma):
         self.number = number
         self.sentence = sentence
+        self.token = token
         self.lemma = lemma
 
     def __str__(self):
@@ -225,6 +250,7 @@ class SingleSlotData(object):
     def to_json(self):
         return {'number': self.number,
                 'sentence': self.sentence,
+                'token': self.token,
                 'lemma': self.lemma}
 
 
@@ -319,6 +345,31 @@ class Feature(object):
                     or slot_data.sentence in prepared.commands)
 
         return Feature('{} is in question or command'
+                       .format(slot_signature), check)
+
+    @staticmethod
+    def slot_is_ques_or_command_object(slot_signature):
+        def check(prepared):
+            slot_data = prepared.single_slots.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            location = slot_data.sentence, slot_data.token
+            return location in prepared.ques_and_command_objects
+
+        return Feature('{} is question or command object'
+                       .format(slot_signature), check)
+
+    @staticmethod
+    def slot_has_lemma_of_ques_or_command_object(slot_signature):
+        def check(prepared):
+            slot_data = prepared.single_slots.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            return slot_data.lemma in prepared.ques_and_command_lemmas
+
+        return Feature('{} has lemma of question or command object'
                        .format(slot_signature), check)
 
     @staticmethod

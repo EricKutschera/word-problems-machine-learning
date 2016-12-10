@@ -152,7 +152,21 @@ class NLP(object):
                     append_number(from_money_ner)
                     continue
 
-        return numbers
+        # Was seeing '4.0 dollars' being counted as 2 occurences of 4.0
+        last_s = last_t = last_n = None
+        cleaned_numbers = list()
+        for num in numbers:
+            n = num['number']
+            s = num['sentence']
+            t = num['token']
+            if not(n == last_n and s == last_s and t == last_t + 1):
+                cleaned_numbers.append(num)
+
+            last_n = n
+            last_s = s
+            last_t = t
+
+        return cleaned_numbers
 
     def __str__(self):
         return json.dumps(self.to_json())

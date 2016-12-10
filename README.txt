@@ -32,9 +32,6 @@ python main.py extract-features -i {question index}
 
 TODOs
   * find remaining features
-    * find remaining single slot features
-      * has the same lemma as a question object
-      * is a question object
     * find remaining slot pair features
       * Dependency path contains: word
       * Dependency path contains: Dependency Type
