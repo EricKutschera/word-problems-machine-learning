@@ -100,7 +100,9 @@ class FeatureExtractor(object):
     def slot_pair_features(self):
         features = list()
         for signature in self.slot_pair_signatures:
-            features.append(Feature.slot_pair_in_same_sentence(signature))
+            features.extend(
+                [Feature.slot_pair_in_same_sentence(signature),
+                 Feature.slot_pair_are_same_token(signature)])
 
         return features
 
@@ -188,9 +190,10 @@ class PreparedDerivation(object):
         return slot_pairs
 
     def initialize_slot_pair(self, signature):
-        sentence1 = self.sentence_index_for_slot(signature.slot1)
-        sentence2 = self.sentence_index_for_slot(signature.slot2)
-        return SlotPairData((sentence1, sentence2))
+        single_slot1 = self.initialize_single_slot(signature.slot1)
+        single_slot2 = self.initialize_single_slot(signature.slot2)
+        return SlotPairData(single_slot1,
+                            single_slot2)
 
     def number_for_slot(self, signature):
         if (self.derivation.template_index != signature.template_index
@@ -257,14 +260,16 @@ class SingleSlotData(object):
 class SlotPairData(object):
     '''Holds the relevant info needed to check each
        slot pair feature'''
-    def __init__(self, sentences):
-        self.sentences = sentences
+    def __init__(self, slot1_data, slot2_data):
+        self.slot1_data = slot1_data
+        self.slot2_data = slot2_data
 
     def __str__(self):
         return json.dumps(self.to_json())
 
     def to_json(self):
-        return {'sentences': self.sentences}
+        return {'slot1_data': self.slot1_data.to_json(),
+                'slot2_data': self.slot2_data.to_json()}
 
 
 class Features(object):
@@ -395,6 +400,21 @@ class Feature(object):
             if slot_data is None:
                 return False
 
-            return slot_data.sentences[0] == slot_data.sentences[1]
+            return (slot_data.slot1_data.sentence
+                    == slot_data.slot2_data.sentence)
 
         return Feature('{} in same sentence'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_pair_are_same_token(slot_signature):
+        def check(prepared):
+            slot_data = prepared.slot_pairs.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            s1 = slot_data.slot1_data
+            s2 = slot_data.slot2_data
+            return (s1.sentence == s2.sentence
+                    and s1.token == s2.token)
+
+        return Feature('{} are same token'.format(slot_signature), check)

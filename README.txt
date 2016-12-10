@@ -36,7 +36,6 @@ TODOs
       * Dependency path contains: word
       * Dependency path contains: Dependency Type
       * Dependency path contains: (word, Dependency Type)
-      * are the same word instance
       * have the same lemma
       * in the same phrase
       * connected by a preposition
