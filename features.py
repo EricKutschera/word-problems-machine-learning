@@ -106,7 +106,8 @@ class FeatureExtractor(object):
                  Feature.slot_pair_have_same_lemma(signature),
                  Feature.slot_pair_are_same_number(signature),
                  Feature.slot_pair_a_greater_than_b(signature),
-                 Feature.slot_pair_a_less_than_b(signature)])
+                 Feature.slot_pair_a_less_than_b(signature),
+                 Feature.slot_pair_in_same_phrase(signature)])
 
         return features
 
@@ -144,6 +145,9 @@ class PreparedDerivation(object):
         self.ques_and_command_lemmas = {t.lemma
                                         for t in self.ques_and_command_objects
                                         .itervalues()}
+        self.phrases = {i: s.phrases()
+                        for i, s in
+                        enumerate(self.derivation.word_problem.nlp.sentences)}
         self.constants = {i: e.constants()
                           for i, e in enumerate(derivation.template.equations)}
         self.single_slots = self.initialize_single_slots()
@@ -481,3 +485,21 @@ class Feature(object):
                     and s1.number < s2.number)
 
         return Feature('{} a < b'.format(slot_signature), check)
+
+    @staticmethod
+    def slot_pair_in_same_phrase(slot_signature):
+        def check(prepared):
+            slot_data = prepared.slot_pairs.get(slot_signature)
+            if slot_data is None:
+                return False
+
+            s1 = slot_data.slot1_data
+            s2 = slot_data.slot2_data
+            if s1.sentence != s2.sentence:
+                return False
+            s = s1.sentence
+            t1 = s1.token
+            t2 = s2.token
+            return any((t1 in p and t2 in p) for p in prepared.phrases[s])
+
+        return Feature('{} in same phrase'.format(slot_signature), check)

@@ -36,7 +36,6 @@ TODOs
       * Dependency path contains: word
       * Dependency path contains: Dependency Type
       * Dependency path contains: (word, Dependency Type)
-      * in the same phrase
       * connected by a preposition
       * equivalent relationship ?->
         (slot pair) pair relationships?

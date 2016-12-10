@@ -224,6 +224,25 @@ class Sentence(object):
 
         return (None, -1)
 
+    def phrases(self):
+        return self.phrases_from_tree(self.parse_tree(), 0)
+
+    @classmethod
+    def phrases_from_tree(cls, tree, index):
+        if tree.children and tree.value[-1] == 'P':
+            tokens = tree.token_count()
+            return [list(range(index, index + tokens))]
+
+        phrases = list()
+        for c in tree.children:
+            sub_phrases = cls.phrases_from_tree(c, index)
+            for sub in sub_phrases:
+                phrases.append(sub)
+
+            index += c.token_count()
+
+        return phrases
+
     def parse_tree(self):
         return ParseTree.from_parse_string(self.parse)
 
