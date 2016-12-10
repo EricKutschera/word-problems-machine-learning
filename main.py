@@ -4,9 +4,9 @@ import json
 from labeled_example import LabeledExample
 from nlp import NLP
 from word_problem import WordProblem
-from derivation import derive_wp_for_all_templates
 from template import Template
 from features import FeatureExtractor
+from optimize import optimize_parameters
 
 
 def main():
@@ -27,6 +27,9 @@ def main():
     parser.add_argument('-t', '--templates', type=str,
                         default='unique_templates.json',
                         help='file to write or read set of unique templates')
+    parser.add_argument('-p', '--parameters', type=str,
+                        default='parameters.json',
+                        help='file to write or read optimal parameters')
     args = parser.parse_args()
 
     if args.action == 'print':
@@ -88,15 +91,11 @@ def main():
         #                     if any([e.constants() for e in u.equations])][:2]
         word_problems = word_problems[:2]
 
-        derivations = derive_wp_for_all_templates(wp, unique_templates)
-        deriv = derivations.next()
-        print(deriv)
-        # TODO(Eric): determine all possible features up front
-        #             then for a given derivation, find all features for
-        #             that deriv and stick them in the right spot
         feature_extractor = FeatureExtractor(unique_templates, word_problems)
-        features = feature_extractor.extract(deriv)
-        print(features)
+        parameters = optimize_parameters(feature_extractor, word_problems,
+                                         unique_templates)
+        with open(args.parameters, 'wt') as f_handle:
+            f_handle.write(json.dumps(parameters.to_json()))
 
 
 if __name__ == '__main__':

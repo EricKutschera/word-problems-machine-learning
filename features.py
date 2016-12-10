@@ -111,7 +111,6 @@ class FeatureExtractor(object):
 
         return features
 
-    # TODO
     def order_all_features(self):
         unigrams = [Feature.from_unigram(u) for u in self.unigrams]
         bigrams = [Feature.from_bigram(b) for b in self.bigrams]

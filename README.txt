@@ -40,21 +40,6 @@ TODOs
       * equivalent relationship ?->
         (slot pair) pair relationships?
 
-  * Find the vector of all possible features
-    * define slot signatures to determine all possible
-      single slot and slot pair signatures
-    * Choose an ordering for all features which
-      requires knowing up front all
-      * count of unique templates
-      * slot/slot pair signatures
-      * unigrams
-      * per single slot signature
-        * lemmas
-        * constants
-      * per slot pair signature
-        * word
-        * dependency type
-
   * Perform Parameter estimation for the weight vector theta
     * theta has one real valued weight for each
       feature in the vector of all possible features

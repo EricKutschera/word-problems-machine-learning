@@ -32,6 +32,8 @@ class Derivation(object):
                 'word_problem': self.word_problem.to_json()}
 
 
+# TODO(Eric): this should not be necessary since we use beam
+#             search and do not look at all derivations
 # Since there are a lot of derivations, these functions
 # are implemented as generators. This avoids a huge
 # memory requirement
