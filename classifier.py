@@ -37,10 +37,12 @@ class Classifier(object):
 
         total = 0
         for wp in word_problems:
-            correct_equations = wp.labeled_example.equations
+            correct_index = self.find_template_index(wp, unique_templates)
+            solutions = wp.labeled_example.solutions
 
             def validator_func(d):
-                return self.can_derive_correct_equations(d, correct_equations)
+                return self.can_derive_correct_equations(d, correct_index,
+                                                         solutions)
 
             total += beam_search(wp, unique_templates, score_func,
                                  validator_func, final_evaluation_func)
@@ -62,10 +64,12 @@ class Classifier(object):
 
         total_gradient = numpy.zeros(len(self.parameters))
         for wp in word_problems:
-            correct_equations = wp.labeled_example.equations
+            correct_index = self.find_template_index(wp, unique_templates)
+            solutions = wp.labeled_example.solutions
 
             def validator_func(d):
-                return self.can_derive_correct_equations(d, correct_equations)
+                return self.can_derive_correct_equations(d, correct_index,
+                                                         solutions)
 
             total_gradient += beam_search(wp, unique_templates, score_func,
                                           validator_func,
@@ -77,14 +81,40 @@ class Classifier(object):
 
         return total_gradient
 
-    # TODO(Eric): can check for equality to the correct template
-    #             if sufficiently filled in to get a numeric solution
-    #             for any unknown make sure it is part of the
-    #             correct solution. If can solve for all
-    #             unknowns make sure the solution can match up
-    #             exactly
+    # TODO(Eric): this might be expensive. Could map word_problems to
+    #             unique templates once at start
     @staticmethod
-    def can_derive_correct_equations(derivation, correct_equations):
+    def find_template_index(wp, templates):
+        correct_template = wp.extract_template()
+        for i, template in enumerate(templates):
+            if correct_template == template:
+                return i
+
+        raise Exception('equations and nlp do not match a template')
+
+    @staticmethod
+    def can_derive_correct_equations(derivation, correct_template_index,
+                                     correct_solutions):
+        if derivation.template_index != correct_template_index:
+            return False
+
+        solutions = derivation.solve()
+        usable_solutions = list()
+        for s in solutions:
+            try:
+                usable_solutions.append(float(s))
+            except:
+                # TODO once this works -> remove print
+                # also specify ValueError
+                print(s)
+                print('could not use as solution^')
+
+        correct_solutions = correct_solutions[:]
+        for s in usable_solutions:
+            if s not in correct_solutions:
+                return False
+            correct_solutions.remove(s)
+
         return True
 
     def __str__(self):

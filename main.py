@@ -83,8 +83,8 @@ def main():
 
         unique_templates = [Template.from_json(j) for j in json.loads(raw)]
 
-        # TODO(Eric): using only 2 templates and 2 word problems for testing
-        unique_templates = unique_templates[:2]
+        # TODO(Eric): using only 2 word problems for testing
+        # unique_templates = unique_templates[:2]
         word_problems = word_problems[:2]
 
         feature_extractor = FeatureExtractor(unique_templates, word_problems)
