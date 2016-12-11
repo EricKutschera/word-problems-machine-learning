@@ -40,23 +40,7 @@ TODOs
       * equivalent relationship ?->
         (slot pair) pair relationships?
 
-  * Perform Parameter estimation for the weight vector theta
-    * theta has one real valued weight for each
-      feature in the vector of all possible features
-    * maximize the conditional log-likelihood of the training data
-      where for each word problem all derivations which are "valid"
-      are included
-      * valid is either: correct answer, or correct system of equations
-      * focus on correct system of equations since that is what is referred
-        to as supervised learning in the paper and gives better results
-    * use L-BFGS to perform the maximization
-      https://docs.scipy.org/doc/scipy-0.18.1/reference/generated/scipy.optimize.fmin_l_bfgs_b.html#scipy.optimize.fmin_l_bfgs_b
-
-  * Choose the most likely answer for a word problem
-    * use beam search over the possible derivations for that word problem
-      using the set of unique templates
-    * compute the probability of each derivation using the parameter weight vector theta
-    * add together the probabilities for derivations with the same answer
-    * pick the answer with highest probability
+  * understand if L-BFGS is working
+    https://docs.scipy.org/doc/scipy-0.18.1/reference/generated/scipy.optimize.fmin_l_bfgs_b.html#scipy.optimize.fmin_l_bfgs_b
 
   * Perform 5-fold cross validation

@@ -115,7 +115,6 @@ def call_fold(arg_testfold, arg_numfolds, arg_foldoutput,
     with open(arg_parameters, 'wt') as f_handle:
         f_handle.write(json.dumps(classifier.to_json()))
 
-    # TODO classify the test set
     correct = 0
     for test_i in test_indices:
         test_wp = word_problems[test_i]

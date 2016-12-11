@@ -17,10 +17,10 @@ class Classifier(object):
         self.features = Features(feature_extractor.ordered_features,
                                  [0 for _ in range(feature_count)])
 
-    # TODO(Eric): these probabilities are not normalized to
-    #             be in [0,1]. When applying this calculation
-    #             in computing the log probablity and the gradient
-    #             need to normalize.
+    # These probabilities are not normalized to
+    # be in [0,1]. When applying this calculation
+    # in computing the log probablity and the gradient
+    # need to normalize.
     def probability_of_derivation(self, derivation):
         features = self.feature_extractor.extract(derivation)
         array = numpy.array(features.instance)

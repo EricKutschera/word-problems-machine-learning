@@ -52,6 +52,8 @@ class Template(object):
         numbers = list({d['number'] for d in numbers})
         new_equations = [eq.full for eq in equations]
 
+        # TODO(Eric): question 6158 should give 24.0 the same
+        #             number slot in each equation
         count = 0
         for num in numbers:
             for i, eq in enumerate(new_equations):

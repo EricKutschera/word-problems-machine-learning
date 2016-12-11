@@ -16,7 +16,6 @@ def optimize_parameters(feature_extractor, word_problems, unique_templates,
     ordered_features = feature_extractor.ordered_features
     feature_count = len(ordered_features)
 
-    # TODO(Eric): try random initialization in [0,1]
     weights = numpy.array([random.random() for _ in range(feature_count)])
 
     classifier = Classifier(feature_extractor, weights, unique_templates)
