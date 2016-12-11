@@ -16,8 +16,9 @@ class Classifier(object):
                                  [0 for _ in range(feature_count)])
 
     # TODO(Eric): these probabilities are not normalized to
-    #             be in [0,1]. I think that's ok but might
-    #             need to do a beam search.
+    #             be in [0,1]. When applying this calculation
+    #             in computing the log probablity and the gradient
+    #             need to normalize.
     def probability_of_derivation(self, derivation):
         features = self.feature_extractor.extract(derivation)
         array = numpy.array(features.instance)
@@ -27,12 +28,17 @@ class Classifier(object):
                        unique_templates):
 
         def score_func(derivation):
-            return math.log(self.probability_of_derivation(derivation))
+            return self.probability_of_derivation(derivation)
 
         def final_evaluation_func(derivations):
-            result = 0
+            probs = list()
             for d in derivations:
-                result += score_func(d)
+                probs.append(score_func(d))
+
+            total = sum(probs)
+            result = 0
+            for p in probs:
+                result += math.log(p / total)
 
             return result
 
@@ -58,11 +64,14 @@ class Classifier(object):
 
         def final_evaluation_func(derivations):
             gradient = numpy.zeros(len(self.parameters))
+            probs = list()
             for d in derivations:
+                prob = score_func(d)
+                probs.append(prob)
                 instance = self.feature_extractor.extract(d).instance
-                gradient += numpy.array(instance)
+                gradient += prob * numpy.array(instance)
 
-            return gradient
+            return gradient / sum(probs)
 
         total_gradient = numpy.zeros(len(self.parameters))
         for i, wp in enumerate(word_problems):
@@ -92,13 +101,14 @@ class Classifier(object):
         solutions = derivation.solve()
         usable_solutions = list()
         for s in solutions:
+            print(s)
             try:
                 usable_solutions.append(float(s))
+                print('^was usable^')
             except:
                 # TODO once this works -> remove print
                 # also specify ValueError
-                print(s)
-                print('could not use as solution^')
+                print('^could not use as solution^')
 
         correct_solutions = correct_solutions[:]
         for s in usable_solutions:
