@@ -70,7 +70,10 @@ class Derivation(object):
         for equation in self.template.solution.itervalues():
             subs = {k: v['number'] for k, v in self.number_map.iteritems()
                     if v is not None}
-            solutions.append(equation.full.xreplace(subs))
+            try:
+                solutions.append(float(equation.full.xreplace(subs)))
+            except TypeError:
+                solutions.append(None)
 
         return solutions
 

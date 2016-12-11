@@ -8,10 +8,10 @@ from classifier import Classifier
 MAX_ITERATIONS = 50
 
 
-def optimize_parameters(feature_extractor, word_problems, unique_templates):
-    wp_template_indices = list()
-    for wp in word_problems:
-        wp_template_indices.append(find_template_index(wp, unique_templates))
+def optimize_parameters(feature_extractor, word_problems, unique_templates,
+                        wp_template_map):
+    wp_template_indices = [wp_template_map[wp.labeled_example.index]
+                           for wp in word_problems]
 
     ordered_features = feature_extractor.ordered_features
     feature_count = len(ordered_features)
@@ -37,20 +37,9 @@ def optimize_parameters(feature_extractor, word_problems, unique_templates):
 
     optimal, final_value, details = fmin_l_bfgs_b(func_to_min, weights,
                                                   fprime=gradient,
-                                                  maxfun=MAX_ITERATIONS)
+                                                  maxfun=MAX_ITERATIONS,
+                                                  maxiter=MAX_ITERATIONS)
     print('final_value: {}'.format(final_value))
     print('details: {}'.format(details))
     classifier.parameters = optimal
     return classifier
-
-
-# TODO(Eric): This is expensive. It should only get called
-#             once per word problem at the start of parameter
-#             optimization.
-def find_template_index(wp, templates):
-    correct_template = wp.extract_template()
-    for i, template in enumerate(templates):
-        if correct_template == template:
-            return i
-
-    raise Exception('equations and nlp do not match a template')

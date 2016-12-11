@@ -333,14 +333,16 @@ class Feature(object):
     def solution_all_integer():
         return Feature('solution all integer',
                        lambda prepared: (prepared.derivation.is_complete()
-                                         and all(round(v) == v
+                                         and all(v is not None
+                                                 and round(v) == v
                                                  for v in prepared.solution)))
 
     @staticmethod
     def solution_all_positive():
         return Feature('solution all positive',
                        lambda prepared: (prepared.derivation.is_complete()
-                                         and all(v > 0
+                                         and all(v is not None
+                                                 and v > 0
                                                  for v in prepared.solution)))
 
     @staticmethod
