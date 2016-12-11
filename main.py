@@ -77,8 +77,6 @@ def main():
         natural_language = {i: NLP.read(args.nlp, i) for i in indices}
         word_problems = [WordProblem(examples[i], natural_language[i])
                          for i in indices]
-        wp = [wp for wp in word_problems
-              if wp.labeled_example.index == args.index][0]
 
         with open(args.templates, 'rt') as f_handle:
             raw = f_handle.read()
@@ -87,8 +85,6 @@ def main():
 
         # TODO(Eric): using only 2 templates and 2 word problems for testing
         unique_templates = unique_templates[:2]
-        # unique_templates = [u for u in unique_templates
-        #                     if any([e.constants() for e in u.equations])][:2]
         word_problems = word_problems[:2]
 
         feature_extractor = FeatureExtractor(unique_templates, word_problems)

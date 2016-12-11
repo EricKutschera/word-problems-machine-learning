@@ -15,6 +15,9 @@ class Classifier(object):
         self.features = Features(feature_extractor.ordered_features,
                                  [0 for _ in range(feature_count)])
 
+    # TODO(Eric): these probabilities are not normalized to
+    #             be in [0,1]. I think that's ok but might
+    #             need to do a beam search.
     def probability_of_derivation(self, derivation):
         features = self.feature_extractor.extract(derivation)
         array = numpy.array(features.instance)
@@ -34,9 +37,9 @@ class Classifier(object):
 
         total = 0
         for wp in word_problems:
+            correct_equations = wp.labeled_example.equations
 
             def validator_func(d):
-                correct_equations = wp.labeled_example.equations
                 return self.can_derive_correct_equations(d, correct_equations)
 
             total += beam_search(wp, unique_templates, score_func,
@@ -44,14 +47,45 @@ class Classifier(object):
 
         return total
 
-    # TODO
+    def log_likelihood_gradient(self, word_problems, unique_templates):
+
+        def score_func(derivation):
+            return self.probability_of_derivation(derivation)
+
+        def final_evaluation_func(derivations):
+            gradient = numpy.zeros(len(self.parameters))
+            for d in derivations:
+                instance = self.feature_extractor.extract(d).instance
+                gradient += numpy.array(instance)
+
+            return gradient
+
+        total_gradient = numpy.zeros(len(self.parameters))
+        for wp in word_problems:
+            correct_equations = wp.labeled_example.equations
+
+            def validator_func(d):
+                return self.can_derive_correct_equations(d, correct_equations)
+
+            total_gradient += beam_search(wp, unique_templates, score_func,
+                                          validator_func,
+                                          final_evaluation_func)
+
+            total_gradient -= beam_search(wp, unique_templates, score_func,
+                                          lambda d: True,
+                                          final_evaluation_func)
+
+        return total_gradient
+
+    # TODO(Eric): can check for equality to the correct template
+    #             if sufficiently filled in to get a numeric solution
+    #             for any unknown make sure it is part of the
+    #             correct solution. If can solve for all
+    #             unknowns make sure the solution can match up
+    #             exactly
     @staticmethod
     def can_derive_correct_equations(derivation, correct_equations):
         return True
-
-    # TODO
-    def log_likelihood_gradient(self, word_problems, unique_templates):
-        return numpy.zeros(len(self.parameters))
 
     def __str__(self):
         return json.dumps(self.to_json())
