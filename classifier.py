@@ -58,7 +58,8 @@ class Classifier(object):
 
             total += beam_search(wp, unique_templates, score_func,
                                  validator_func, final_evaluation_func)
-            print('log likelihood total after word problem: {}'.format(i))
+            print('log likelihood total after word problem: {} is {}'
+                  .format(i, total))
 
         return total
 

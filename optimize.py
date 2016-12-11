@@ -1,3 +1,5 @@
+import random
+
 import numpy
 from scipy.optimize import fmin_l_bfgs_b
 
@@ -15,7 +17,7 @@ def optimize_parameters(feature_extractor, word_problems, unique_templates):
     feature_count = len(ordered_features)
 
     # TODO(Eric): try random initialization in [0,1]
-    weights = numpy.ones(feature_count)
+    weights = numpy.array([random.random() for _ in range(feature_count)])
 
     classifier = Classifier(feature_extractor, weights)
 
@@ -35,7 +37,7 @@ def optimize_parameters(feature_extractor, word_problems, unique_templates):
 
     optimal, final_value, details = fmin_l_bfgs_b(func_to_min, weights,
                                                   fprime=gradient,
-                                                  maxiter=MAX_ITERATIONS)
+                                                  maxfun=MAX_ITERATIONS)
     print('final_value: {}'.format(final_value))
     print('details: {}'.format(details))
     classifier.parameters = optimal
