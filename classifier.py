@@ -23,7 +23,8 @@ class Classifier(object):
         array = numpy.array(features.instance)
         return math.exp(array.dot(self.parameters))
 
-    def log_likelihood(self, word_problems, unique_templates):
+    def log_likelihood(self, word_problems, wp_template_indices,
+                       unique_templates):
 
         def score_func(derivation):
             return math.log(self.probability_of_derivation(derivation))
@@ -36,8 +37,8 @@ class Classifier(object):
             return result
 
         total = 0
-        for wp in word_problems:
-            correct_index = self.find_template_index(wp, unique_templates)
+        for i, wp in enumerate(word_problems):
+            correct_index = wp_template_indices[i]
             solutions = wp.labeled_example.solutions
 
             def validator_func(d):
@@ -49,7 +50,8 @@ class Classifier(object):
 
         return total
 
-    def log_likelihood_gradient(self, word_problems, unique_templates):
+    def log_likelihood_gradient(self, word_problems, wp_template_indices,
+                                unique_templates):
 
         def score_func(derivation):
             return self.probability_of_derivation(derivation)
@@ -63,8 +65,8 @@ class Classifier(object):
             return gradient
 
         total_gradient = numpy.zeros(len(self.parameters))
-        for wp in word_problems:
-            correct_index = self.find_template_index(wp, unique_templates)
+        for i, wp in enumerate(word_problems):
+            correct_index = wp_template_indices[i]
             solutions = wp.labeled_example.solutions
 
             def validator_func(d):
@@ -80,17 +82,6 @@ class Classifier(object):
                                           final_evaluation_func)
 
         return total_gradient
-
-    # TODO(Eric): this might be expensive. Could map word_problems to
-    #             unique templates once at start
-    @staticmethod
-    def find_template_index(wp, templates):
-        correct_template = wp.extract_template()
-        for i, template in enumerate(templates):
-            if correct_template == template:
-                return i
-
-        raise Exception('equations and nlp do not match a template')
 
     @staticmethod
     def can_derive_correct_equations(derivation, correct_template_index,

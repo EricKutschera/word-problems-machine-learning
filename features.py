@@ -181,12 +181,16 @@ class PreparedDerivation(object):
     def initialize_single_slot(self, signature):
         s_index = self.sentence_index_for_slot(signature)
         t_index = self.token_index_for_slot(signature)
-        s_index, t_index, token = self.closest_noun_token_from_indices(
-            s_index, t_index)
+        if s_index is None or t_index is None:
+            lemma = None
+        else:
+            s_index, t_index, token = self.closest_noun_token_from_indices(
+                s_index, t_index)
+            lemma = token.lemma
         return SingleSlotData(self.number_for_slot(signature),
                               s_index,
                               t_index,
-                              token.lemma)
+                              lemma)
 
     def initialize_slot_pairs(self):
         slot_pairs = dict()
@@ -209,7 +213,11 @@ class PreparedDerivation(object):
             return None
 
         sym = Symbol(signature.symbol)
-        return self.derivation.number_map[sym]['number']
+        details = self.derivation.number_map[sym]
+        if details is None:
+            return None
+
+        return details['number']
 
     def location_for_slot(self, signature):
         if self.derivation.template_index != signature.template_index:
@@ -222,10 +230,18 @@ class PreparedDerivation(object):
             return self.derivation.unknown_map[sym]
 
     def sentence_index_for_slot(self, signature):
-        return self.location_for_slot(signature)['sentence']
+        loc = self.location_for_slot(signature)
+        if loc is None:
+            return None
+
+        return loc['sentence']
 
     def token_index_for_slot(self, signature):
-        return self.location_for_slot(signature)['token']
+        loc = self.location_for_slot(signature)
+        if loc is None:
+            return None
+
+        return loc['token']
 
     def token_from_indices(self, sentence_index, token_index):
         return (self.derivation.word_problem.nlp.sentences[sentence_index]
@@ -316,14 +332,16 @@ class Feature(object):
     @staticmethod
     def solution_all_integer():
         return Feature('solution all integer',
-                       lambda prepared: all(round(v) == v
-                                            for v in prepared.solution))
+                       lambda prepared: (prepared.derivation.is_complete()
+                                         and all(round(v) == v
+                                                 for v in prepared.solution)))
 
     @staticmethod
     def solution_all_positive():
         return Feature('solution all positive',
-                       lambda prepared: all(v > 0
-                                            for v in prepared.solution))
+                       lambda prepared: (prepared.derivation.is_complete()
+                                         and all(v > 0
+                                                 for v in prepared.solution)))
 
     @staticmethod
     def slot_is_one(slot_signature):
@@ -367,7 +385,7 @@ class Feature(object):
             if slot_data is None:
                 return False
 
-            location = slot_data.sentence, slot_data.token
+            location = (slot_data.sentence, slot_data.token)
             return location in prepared.ques_and_command_objects
 
         return Feature('{} is question or command object'
@@ -394,7 +412,8 @@ class Feature(object):
 
             # TODO(Eric): could come up with a better definition of
             #             "close to constant" than "in same equation"
-            return (slot_data.lemma == lemma
+            return (slot_data.lemma is not None
+                    and slot_data.lemma == lemma
                     and constant in prepared.constants[
                         slot_signature.equation_index])
 
@@ -408,7 +427,8 @@ class Feature(object):
             if slot_data is None:
                 return False
 
-            return (slot_data.slot1_data.sentence
+            return (slot_data.slot1_data.sentence is not None
+                    and slot_data.slot1_data.sentence
                     == slot_data.slot2_data.sentence)
 
         return Feature('{} in same sentence'.format(slot_signature), check)
@@ -422,7 +442,9 @@ class Feature(object):
 
             s1 = slot_data.slot1_data
             s2 = slot_data.slot2_data
-            return (s1.sentence == s2.sentence
+            return (s1.sentence is not None
+                    and s1.token is not None
+                    and s1.sentence == s2.sentence
                     and s1.token == s2.token)
 
         return Feature('{} are same token'.format(slot_signature), check)
@@ -436,7 +458,8 @@ class Feature(object):
 
             s1 = slot_data.slot1_data
             s2 = slot_data.slot2_data
-            return s1.lemma == s2.lemma
+            return (s1 is not None
+                    and s1.lemma == s2.lemma)
 
         return Feature('{} are same lemma'.format(slot_signature), check)
 
@@ -494,7 +517,7 @@ class Feature(object):
 
             s1 = slot_data.slot1_data
             s2 = slot_data.slot2_data
-            if s1.sentence != s2.sentence:
+            if s1.sentence is None or s1.sentence != s2.sentence:
                 return False
             s = s1.sentence
             t1 = s1.token

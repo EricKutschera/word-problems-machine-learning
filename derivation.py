@@ -27,7 +27,7 @@ class Derivation(object):
         return not any(v is None for v in self.number_map.itervalues())
 
     def is_complete(self):
-        self.all_unknowns_filled() and self.all_numbers_filled()
+        return self.all_unknowns_filled() and self.all_numbers_filled()
 
     def all_ways_to_fill_next_slot(self):
         if not self.all_numbers_filled():
@@ -66,7 +66,8 @@ class Derivation(object):
     def solve(self):
         solutions = list()
         for equation in self.template.solution.itervalues():
-            subs = {k: v['number'] for k, v in self.number_map.iteritems()}
+            subs = {k: v['number'] for k, v in self.number_map.iteritems()
+                    if v is not None}
             solutions.append(equation.full.xreplace(subs))
 
         return solutions
