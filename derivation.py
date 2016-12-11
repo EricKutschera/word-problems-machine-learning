@@ -39,8 +39,9 @@ class Derivation(object):
         return None
 
     def all_ways_to_fill_next_number(self):
-        next_number_slot = sorted(s for s in self.number_map
-                                  if self.number_map[s] is None)[0]
+        not_assigned = [s for s in self.number_map
+                        if self.number_map[s] is None]
+        next_number_slot = sorted(not_assigned, key=str)[0]
 
         derivations = list()
         for number in self.numbers:
@@ -52,8 +53,9 @@ class Derivation(object):
         return derivations
 
     def all_ways_to_fill_next_unknown(self):
-        next_unknown_slot = sorted(s for s in self.unknown_map
-                                   if self.unknown_map[s] is None)[0]
+        not_assigned = [s for s in self.unknown_map
+                        if self.unknown_map[s] is None]
+        next_unknown_slot = sorted(not_assigned, key=str)[0]
 
         derivations = list()
         for noun in self.nouns:

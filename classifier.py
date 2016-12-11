@@ -31,6 +31,8 @@ class Classifier(object):
             return self.probability_of_derivation(derivation)
 
         def final_evaluation_func(derivations):
+            if len(derivations) == 0:
+                print('no derivations in beam for log likelihood')
             probs = list()
             for d in derivations:
                 probs.append(score_func(d))
@@ -47,12 +49,16 @@ class Classifier(object):
             correct_index = wp_template_indices[i]
             solutions = wp.labeled_example.solutions
 
+            print('ll for wp: {} with template: {}, with solutions: {}'
+                  .format(i, correct_index, solutions))
+
             def validator_func(d):
                 return self.can_derive_correct_equations(d, correct_index,
                                                          solutions)
 
             total += beam_search(wp, unique_templates, score_func,
                                  validator_func, final_evaluation_func)
+            print('log likelihood total after word problem: {}'.format(i))
 
         return total
 
@@ -63,6 +69,8 @@ class Classifier(object):
             return self.probability_of_derivation(derivation)
 
         def final_evaluation_func(derivations):
+            if len(derivations) == 0:
+                print('no derivations in beam for log likelihood gradient')
             gradient = numpy.zeros(len(self.parameters))
             probs = list()
             for d in derivations:
@@ -71,12 +79,20 @@ class Classifier(object):
                 instance = self.feature_extractor.extract(d).instance
                 gradient += prob * numpy.array(instance)
 
-            return gradient / sum(probs)
+            total_prob = sum(probs)
+            if total_prob == 0:
+                print('no probablity to normalize in gradient')
+                return gradient
+
+            return gradient / total_prob
 
         total_gradient = numpy.zeros(len(self.parameters))
         for i, wp in enumerate(word_problems):
             correct_index = wp_template_indices[i]
             solutions = wp.labeled_example.solutions
+
+            print('ll gradient for wp: {} with template: {}'
+                  .format(i, correct_index))
 
             def validator_func(d):
                 return self.can_derive_correct_equations(d, correct_index,
@@ -100,21 +116,25 @@ class Classifier(object):
 
         solutions = derivation.solve()
         usable_solutions = list()
+        pending_solutions = 0
         for s in solutions:
-            print(s)
             try:
                 usable_solutions.append(float(s))
-                print('^was usable^')
-            except:
-                # TODO once this works -> remove print
-                # also specify ValueError
-                print('^could not use as solution^')
+            except TypeError:
+                pending_solutions += 1
 
+        # Need to have all the correct solutions.
+        # Some problems involve equations with multiple
+        # unknowns, but the quesition only wants to know the
+        # value of one of them. So having extra values is fine.
         correct_solutions = correct_solutions[:]
-        for s in usable_solutions:
-            if s not in correct_solutions:
-                return False
-            correct_solutions.remove(s)
+        for s in correct_solutions:
+            if s not in usable_solutions:
+                if pending_solutions == 0:
+                    return False
+                pending_solutions -= 1
+            else:
+                usable_solutions.remove(s)
 
         return True
 
