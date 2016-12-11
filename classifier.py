@@ -1,5 +1,6 @@
 import math
 import json
+from collections import defaultdict
 
 import numpy
 
@@ -8,9 +9,10 @@ from beam import beam_search
 
 
 class Classifier(object):
-    def __init__(self, feature_extractor, parameters):
+    def __init__(self, feature_extractor, parameters, unique_templates):
         self.feature_extractor = feature_extractor
         self.parameters = parameters
+        self.unique_templates = unique_templates
         feature_count = len(feature_extractor.ordered_features)
         self.features = Features(feature_extractor.ordered_features,
                                  [0 for _ in range(feature_count)])
@@ -138,6 +140,40 @@ class Classifier(object):
                 usable_solutions.remove(s)
 
         return True
+
+    def solve(self, wp):
+
+        def score_func(d):
+            return self.probability_of_derivation(d)
+
+        def final_eval_func(derivations):
+            total_probs = defaultdict(int)
+            for d in derivations:
+                sol = d.solve()
+                total_probs[tuple(sorted(sol))] += score_func(d)
+
+            best_prob = max(total_probs.values())
+            for sol, prob in total_probs.iteritems():
+                if prob == best_prob:
+                    return list(sol)
+
+            return None
+
+        solution = beam_search(wp, self.unique_templates, score_func,
+                               lambda d: True, final_eval_func)
+
+        correct_sol = wp.labeled_example.solutions[:]
+        correct = True
+        for c in correct_sol:
+            if c in solution:
+                solution.remove(c)
+            else:
+                correct = False
+                break
+
+        print('guessed: {}, correct: {}, got it?: {}'
+              .format(solution, correct_sol, correct))
+        return int(correct)
 
     def __str__(self):
         return json.dumps(self.to_json())

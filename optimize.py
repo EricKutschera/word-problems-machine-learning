@@ -19,7 +19,7 @@ def optimize_parameters(feature_extractor, word_problems, unique_templates,
     # TODO(Eric): try random initialization in [0,1]
     weights = numpy.array([random.random() for _ in range(feature_count)])
 
-    classifier = Classifier(feature_extractor, weights)
+    classifier = Classifier(feature_extractor, weights, unique_templates)
 
     # TODO(Eric): add regularization
     #             L^{2} norm and \lambda = 0.1

@@ -117,6 +117,9 @@ def call_fold(arg_testfold, arg_numfolds, arg_foldoutput,
 
     # TODO classify the test set
     correct = 0
+    for test_i in test_indices:
+        test_wp = word_problems[test_i]
+        correct += classifier.solve(test_wp)
     print('{} correct out of {}'.format(correct, len(test_indices)))
 
 
