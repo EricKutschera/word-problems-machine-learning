@@ -1,0 +1,778 @@
+{
+  "nlp": {
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "lemma": "a",
+            "word": "A",
+            "pos": "DT"
+          },
+          {
+            "lemma": "write",
+            "word": "writing",
+            "pos": "VBG"
+          },
+          {
+            "lemma": "workshop",
+            "word": "workshop",
+            "pos": "NN"
+          },
+          {
+            "lemma": "enroll",
+            "word": "enrolls",
+            "pos": "VBZ"
+          },
+          {
+            "lemma": "novelist",
+            "word": "novelists",
+            "pos": "NNS"
+          },
+          {
+            "lemma": "and",
+            "word": "and",
+            "pos": "CC"
+          },
+          {
+            "lemma": "poet",
+            "word": "poets",
+            "pos": "NNS"
+          },
+          {
+            "lemma": "in",
+            "word": "in",
+            "pos": "IN"
+          },
+          {
+            "lemma": "a",
+            "word": "a",
+            "pos": "DT"
+          },
+          {
+            "lemma": "ratio",
+            "word": "ratio",
+            "pos": "NN"
+          },
+          {
+            "lemma": "of",
+            "word": "of",
+            "pos": "IN"
+          },
+          {
+            "lemma": "5",
+            "word": "5",
+            "pos": "CD"
+          },
+          {
+            "lemma": "to",
+            "word": "to",
+            "pos": "TO"
+          },
+          {
+            "lemma": "3",
+            "word": "3",
+            "pos": "CD"
+          },
+          {
+            "lemma": ".",
+            "word": ".",
+            "pos": "."
+          }
+        ],
+        "parse": "(ROOT (S (NP (DT A) (VBG writing) (NN workshop)) (VP (VBZ enrolls) (NP (NNS novelists) (CC and) (NNS poets)) (PP (IN in) (NP (NP (DT a) (NN ratio)) (PP (IN of) (NP (QP (CD 5) (TO to) (CD 3))))))) (. .))) ",
+        "dependencies": [
+          {
+            "governor_index": "0",
+            "kind": "basic",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "3",
+            "kind": "basic",
+            "relation": "det",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "basic",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "nsubj",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "dobj",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "5",
+            "kind": "basic",
+            "relation": "cc",
+            "dependent_index": "6"
+          },
+          {
+            "governor_index": "5",
+            "kind": "basic",
+            "relation": "conj",
+            "dependent_index": "7"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "prep",
+            "dependent_index": "8"
+          },
+          {
+            "governor_index": "10",
+            "kind": "basic",
+            "relation": "det",
+            "dependent_index": "9"
+          },
+          {
+            "governor_index": "8",
+            "kind": "basic",
+            "relation": "pobj",
+            "dependent_index": "10"
+          },
+          {
+            "governor_index": "10",
+            "kind": "basic",
+            "relation": "prep",
+            "dependent_index": "11"
+          },
+          {
+            "governor_index": "14",
+            "kind": "basic",
+            "relation": "number",
+            "dependent_index": "12"
+          },
+          {
+            "governor_index": "14",
+            "kind": "basic",
+            "relation": "dep",
+            "dependent_index": "13"
+          },
+          {
+            "governor_index": "11",
+            "kind": "basic",
+            "relation": "pobj",
+            "dependent_index": "14"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed",
+            "relation": "det",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "nsubj",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "dobj",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "5",
+            "kind": "collapsed",
+            "relation": "conj_and",
+            "dependent_index": "7"
+          },
+          {
+            "governor_index": "10",
+            "kind": "collapsed",
+            "relation": "det",
+            "dependent_index": "9"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "prep_in",
+            "dependent_index": "10"
+          },
+          {
+            "governor_index": "14",
+            "kind": "collapsed",
+            "relation": "number",
+            "dependent_index": "12"
+          },
+          {
+            "governor_index": "14",
+            "kind": "collapsed",
+            "relation": "dep",
+            "dependent_index": "13"
+          },
+          {
+            "governor_index": "10",
+            "kind": "collapsed",
+            "relation": "prep_of",
+            "dependent_index": "14"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed-ccprocessed",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed-ccprocessed",
+            "relation": "det",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed-ccprocessed",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "nsubj",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "dobj",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "dobj",
+            "dependent_index": "7"
+          },
+          {
+            "governor_index": "5",
+            "kind": "collapsed-ccprocessed",
+            "relation": "conj_and",
+            "dependent_index": "7"
+          },
+          {
+            "governor_index": "10",
+            "kind": "collapsed-ccprocessed",
+            "relation": "det",
+            "dependent_index": "9"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "prep_in",
+            "dependent_index": "10"
+          },
+          {
+            "governor_index": "14",
+            "kind": "collapsed-ccprocessed",
+            "relation": "number",
+            "dependent_index": "12"
+          },
+          {
+            "governor_index": "14",
+            "kind": "collapsed-ccprocessed",
+            "relation": "dep",
+            "dependent_index": "13"
+          },
+          {
+            "governor_index": "10",
+            "kind": "collapsed-ccprocessed",
+            "relation": "prep_of",
+            "dependent_index": "14"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "lemma": "there",
+            "word": "There",
+            "pos": "EX"
+          },
+          {
+            "lemma": "be",
+            "word": "are",
+            "pos": "VBP"
+          },
+          {
+            "lemma": "24",
+            "word": "24",
+            "pos": "CD"
+          },
+          {
+            "lemma": "people",
+            "word": "people",
+            "pos": "NNS"
+          },
+          {
+            "lemma": "at",
+            "word": "at",
+            "pos": "IN"
+          },
+          {
+            "lemma": "the",
+            "word": "the",
+            "pos": "DT"
+          },
+          {
+            "lemma": "workshop",
+            "word": "workshop",
+            "pos": "NN"
+          },
+          {
+            "lemma": ".",
+            "word": ".",
+            "pos": "."
+          }
+        ],
+        "parse": "(ROOT (S (NP (EX There)) (VP (VBP are) (NP (NP (CD 24) (NNS people)) (PP (IN at) (NP (DT the) (NN workshop))))) (. .))) ",
+        "dependencies": [
+          {
+            "governor_index": "0",
+            "kind": "basic",
+            "relation": "root",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "2",
+            "kind": "basic",
+            "relation": "expl",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "num",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "2",
+            "kind": "basic",
+            "relation": "nsubj",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "prep",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "7",
+            "kind": "basic",
+            "relation": "det",
+            "dependent_index": "6"
+          },
+          {
+            "governor_index": "5",
+            "kind": "basic",
+            "relation": "pobj",
+            "dependent_index": "7"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed",
+            "relation": "root",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "2",
+            "kind": "collapsed",
+            "relation": "expl",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "num",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "2",
+            "kind": "collapsed",
+            "relation": "nsubj",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "7",
+            "kind": "collapsed",
+            "relation": "det",
+            "dependent_index": "6"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "prep_at",
+            "dependent_index": "7"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed-ccprocessed",
+            "relation": "root",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "2",
+            "kind": "collapsed-ccprocessed",
+            "relation": "expl",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "num",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "2",
+            "kind": "collapsed-ccprocessed",
+            "relation": "nsubj",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "7",
+            "kind": "collapsed-ccprocessed",
+            "relation": "det",
+            "dependent_index": "6"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "prep_at",
+            "dependent_index": "7"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "lemma": "how",
+            "word": "How",
+            "pos": "WRB"
+          },
+          {
+            "lemma": "many",
+            "word": "many",
+            "pos": "JJ"
+          },
+          {
+            "lemma": "novelist",
+            "word": "novelists",
+            "pos": "NNS"
+          },
+          {
+            "lemma": "be",
+            "word": "are",
+            "pos": "VBP"
+          },
+          {
+            "lemma": "there",
+            "word": "there",
+            "pos": "EX"
+          },
+          {
+            "lemma": "?",
+            "word": "?",
+            "pos": "."
+          }
+        ],
+        "parse": "(ROOT (SBARQ (WHADVP (WRB How) (NP (JJ many) (NNS novelists))) (SQ (VBP are) (NP (EX there))) (. ?))) ",
+        "dependencies": [
+          {
+            "governor_index": "0",
+            "kind": "basic",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "advmod",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "basic",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "1",
+            "kind": "basic",
+            "relation": "dep",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "expl",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "advmod",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "1",
+            "kind": "collapsed",
+            "relation": "dep",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "expl",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed-ccprocessed",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "advmod",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed-ccprocessed",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "1",
+            "kind": "collapsed-ccprocessed",
+            "relation": "dep",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "expl",
+            "dependent_index": "5"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "lemma": "how",
+            "word": "How",
+            "pos": "WRB"
+          },
+          {
+            "lemma": "many",
+            "word": "many",
+            "pos": "JJ"
+          },
+          {
+            "lemma": "poet",
+            "word": "poets",
+            "pos": "NNS"
+          },
+          {
+            "lemma": "be",
+            "word": "are",
+            "pos": "VBP"
+          },
+          {
+            "lemma": "there",
+            "word": "there",
+            "pos": "EX"
+          },
+          {
+            "lemma": "?",
+            "word": "?",
+            "pos": "."
+          }
+        ],
+        "parse": "(ROOT (SBARQ (WHADVP (WRB How) (NP (JJ many) (NNS poets))) (SQ (VBP are) (NP (EX there))) (. ?))) ",
+        "dependencies": [
+          {
+            "governor_index": "0",
+            "kind": "basic",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "advmod",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "basic",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "1",
+            "kind": "basic",
+            "relation": "dep",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "basic",
+            "relation": "expl",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "advmod",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "1",
+            "kind": "collapsed",
+            "relation": "dep",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed",
+            "relation": "expl",
+            "dependent_index": "5"
+          },
+          {
+            "governor_index": "0",
+            "kind": "collapsed-ccprocessed",
+            "relation": "root",
+            "dependent_index": "4"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "advmod",
+            "dependent_index": "1"
+          },
+          {
+            "governor_index": "3",
+            "kind": "collapsed-ccprocessed",
+            "relation": "amod",
+            "dependent_index": "2"
+          },
+          {
+            "governor_index": "1",
+            "kind": "collapsed-ccprocessed",
+            "relation": "dep",
+            "dependent_index": "3"
+          },
+          {
+            "governor_index": "4",
+            "kind": "collapsed-ccprocessed",
+            "relation": "expl",
+            "dependent_index": "5"
+          }
+        ]
+      }
+    ]
+  },
+  "labeled_example": {
+    "index": 2598,
+    "question": "A writing workshop enrolls novelists and poets in a ratio of 5 to 3. There are 24 people at the workshop. How many novelists are there? How many poets are there?",
+    "solutions": [
+      15.0,
+      9.0
+    ],
+    "equations": [
+      "3.0*novelists=5.0*poets",
+      "novelists+poets=24.0"
+    ]
+  },
+  "template": {
+    "equations": [
+      {
+        "symbols": [
+          "u_1_0",
+          "n_2",
+          "u_0_0",
+          "n_1"
+        ],
+        "full": "n_1*u_1_0 - 1.0*n_2*u_0_0"
+      },
+      {
+        "symbols": [
+          "n_0",
+          "u_0_1",
+          "u_1_1"
+        ],
+        "full": "-1.0*n_0 + u_0_1 + u_1_1"
+      }
+    ],
+    "solution": {
+      "u_1": {
+        "symbols": [
+          "n_0",
+          "n_2",
+          "n_1"
+        ],
+        "full": "1.0*n_0*n_2/(n_1 + n_2)"
+      },
+      "u_0": {
+        "symbols": [
+          "n_0",
+          "n_2",
+          "n_1"
+        ],
+        "full": "1.0*n_0*n_1/(n_1 + n_2)"
+      }
+    }
+  }
+}
+questions: [('How many novelists are there ?', ('novelists', 2)), ('How many poets are there ?', ('poets', 2))]
+commands: []

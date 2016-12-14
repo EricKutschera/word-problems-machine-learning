@@ -7,6 +7,7 @@ from word_problem import WordProblem
 from template import Template
 from features import FeatureExtractor
 from optimize import optimize_parameters
+from derivation import initialize_partial_derivations_for_all_templates
 
 
 def main():
@@ -134,18 +135,19 @@ def call_extract_features(arg_json, arg_nlp, arg_templates, arg_parameters):
 
     parsed = json.loads(raw)
     unique_templates = [Template.from_json(j) for j in parsed['templates']]
-    wp_template_map = {int(k): v
-                       for k, v in parsed['wp_template_map'].iteritems()}
-
     # TODO(Eric): using only 2 word problems for testing
-    # unique_templates = unique_templates[:2]
+    unique_templates = unique_templates[:2]
     word_problems = word_problems[:2]
 
     feature_extractor = FeatureExtractor(unique_templates, word_problems)
-    classifier = optimize_parameters(feature_extractor, word_problems,
-                                     unique_templates, wp_template_map)
-    with open(arg_parameters, 'wt') as f_handle:
-        f_handle.write(json.dumps(classifier.to_json()))
+    derivations = initialize_partial_derivations_for_all_templates(
+        word_problems[0])
+    derivation = derivations[0]
+    while not derivation.is_complete():
+        derivation = derivation.all_ways_to_fill_next_slot()[0]
+
+    print(feature_extractor.extract(derivation))
+    print(derivation)
 
 
 def call_count_unique(arg_json, arg_unique, arg_nlp):
