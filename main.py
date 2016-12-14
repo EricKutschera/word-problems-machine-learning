@@ -141,7 +141,7 @@ def call_extract_features(arg_json, arg_nlp, arg_templates, arg_parameters):
 
     feature_extractor = FeatureExtractor(unique_templates, word_problems)
     derivations = initialize_partial_derivations_for_all_templates(
-        word_problems[0])
+        word_problems[0], unique_templates)
     derivation = derivations[0]
     while not derivation.is_complete():
         derivation = derivation.all_ways_to_fill_next_slot()[0]

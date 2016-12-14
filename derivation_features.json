@@ -1,0 +1,1402 @@
+{
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": true,
+  "('are', 'in')": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1} is 2": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1} is 1": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "to": true,
+  "('dollars', '.')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1} is 2": false,
+  "{\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1} is 1": false,
+  "school": false,
+  "('and', 'buys')": true,
+  "did": true,
+  "{\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0} is in question or command": false,
+  "{\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} are same lemma": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1} is 2": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1} is 1": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": false,
+  "('Pedro', 'buy')": true,
+  "graduating": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": false,
+  "goes": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "32": true,
+  "('to', 'the')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same token": true,
+  "{\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "('students', '.')": false,
+  "{\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1} is in question or command": false,
+  "total": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a > b": false,
+  "('a', 'peach')": true,
+  "solution all positive": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "more": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same number": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same phrase": false,
+  "{\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0} is in question or command": false,
+  "plum": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": true,
+  "{\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0} is question or command object": false,
+  "('is', 'made')": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0} is question or command object": false,
+  "('market', 'and')": true,
+  "('A', 'plum')": true,
+  "made": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "1": true,
+  "{\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0} has lemma of question or command object": false,
+  "{\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": true,
+  "{\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1} is 2": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "('plum', 'costs')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "a": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} in same sentence": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same lemma": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "market": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a > b": false,
+  "Pedro": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a < b": false,
+  "{\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0} is in question or command": false,
+  "{\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1} has lemma of question or command object": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same token": false,
+  "('dollars', 'and')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": false,
+  "('many', 'boys')": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "('buy', '?')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a > b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1} is 2": false,
+  "{\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1} is 1": false,
+  "{\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0} is question or command object": false,
+  "A": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "('212', 'more')": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same sentence": false,
+  "{\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a < b": false,
+  "('in', 'the')": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} a > b": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": true,
+  "('52', 'dollars')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} in same sentence": true,
+  "('total', 'of')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1} is question or command object": false,
+  "('boys', '.')": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "There": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": false,
+  "('graduating', 'class')": false,
+  "girls": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "2": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "solution all integer": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "('and', 'a')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "('a', 'total')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": true,
+  "than": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} are same token": false,
+  "{\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0} is 2": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}} are same lemma": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": true,
+  "and": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0} is 2": false,
+  "{\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0} is 1": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} are same lemma": true,
+  "('32', 'plums')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same token": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": false,
+  "class": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "High": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same token": false,
+  "('costs', '1')": true,
+  "('did', 'Pedro')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": true,
+  "('costs', '2')": true,
+  "peaches": true,
+  "{\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1} is question or command object": false,
+  "('peach', 'costs')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": false,
+  "{\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0} is 2": false,
+  "{\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0} is 1": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "plums": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "?": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "('plums', 'did')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1} has lemma of question or command object": false,
+  "{\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0} is 1": true,
+  "{\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0} is question or command object": false,
+  "('up', 'of')": false,
+  "are": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0} is 2": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0} is 1": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a > b": false,
+  "('many', 'plums')": true,
+  "('2', 'dollars')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same token": false,
+  "('How', 'many')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0} is 2": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": true,
+  "many": true,
+  "{\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0} is 1": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "('High', 'school')": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}} a > b": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": false,
+  "('more', 'girls')": false,
+  "('of', '32')": true,
+  ".": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1} is 2": false,
+  "{\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1} is 1": false,
+  "('made', 'up')": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0} is in question or command": false,
+  "466": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": true,
+  "{\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same token": false,
+  "{\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0} is question or command object": false,
+  "is": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0} is 1": false,
+  "{\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0} is 2": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same number": false,
+  "in": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}} are same number": false,
+  "('peaches', 'for')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": false,
+  "('buys', 'a')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": false,
+  "buys": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": true,
+  "('There', 'are')": false,
+  "('466', 'students')": false,
+  "('and', 'peaches')": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "{\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0} is question or command object": false,
+  "costs": true,
+  "the": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1} is question or command object": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": true,
+  "212": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a > b": false,
+  "('for', '52')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same sentence": true,
+  "('the', 'class')": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same lemma": false,
+  "is template 1": false,
+  "is template 0": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same sentence": false,
+  "('1', 'dollars')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same sentence": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1} has lemma of question or command object": false,
+  "52": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": true,
+  "('class', '?')": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": true,
+  "('of', '466')": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same lemma": false,
+  "('are', '212')": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same sentence": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": true,
+  "('the', 'market')": true,
+  "for": true,
+  "('girls', 'than')": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1} is question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same token": false,
+  "('class', 'is')": false,
+  "('Pedro', 'goes')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} in same phrase": false,
+  "of": true,
+  "dollars": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a > b": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0} is question or command object": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a > b": false,
+  "{\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": false,
+  "{\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} a > b": true,
+  "{\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0} is question or command object": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} are same number": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0} has lemma of question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} in same sentence": true,
+  "buy": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} a > b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} a < b": true,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": false,
+  "boys": false,
+  "('school', 'graduating')": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} are same lemma": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} a < b": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0} is in question or command": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} a < b": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0} is 2": false,
+  "{\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0} is 1": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "up": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} in same phrase": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_1\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "How": true,
+  "('plums', 'and')": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} in same sentence": true,
+  "('than', 'boys')": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "peach": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} a < b": false,
+  "('boys', 'are')": false,
+  "('goes', 'to')": true,
+  "{\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1} is question or command object": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_0\", \"equation_index\": 0}} in same phrase": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} are same token": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same sentence": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}, \"slot2\": {\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1}} are same number": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_1\", \"equation_index\": 1} is 1": false,
+  "{\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0} has lemma of question or command object": false,
+  "students": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_1_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} are same token": true,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_1\", \"equation_index\": 1}} a < b": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"u_0_0\", \"equation_index\": 0}} in same phrase": false,
+  "{\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0} is 2": false,
+  "{\"template_index\": 1, \"symbol\": \"n_1\", \"equation_index\": 0} is 1": false,
+  "{\"slot1\": {\"template_index\": 1, \"symbol\": \"u_0_0\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 1, \"symbol\": \"n_0\", \"equation_index\": 1}} are same number": false,
+  "{\"template_index\": 1, \"symbol\": \"u_1_1\", \"equation_index\": 1} has lemma of question or command object": false,
+  "{\"template_index\": 0, \"symbol\": \"n_0\", \"equation_index\": 1} is question or command object": false,
+  "{\"slot1\": {\"template_index\": 0, \"symbol\": \"n_2\", \"equation_index\": 0}, \"slot2\": {\"template_index\": 0, \"symbol\": \"n_3\", \"equation_index\": 0}} are same number": false
+}
+{
+  "word_problem": {
+    "nlp": {
+      "sentences": [
+        {
+          "tokens": [
+            {
+              "lemma": "Pedro",
+              "word": "Pedro",
+              "pos": "NNP"
+            },
+            {
+              "lemma": "go",
+              "word": "goes",
+              "pos": "VBZ"
+            },
+            {
+              "lemma": "to",
+              "word": "to",
+              "pos": "TO"
+            },
+            {
+              "lemma": "the",
+              "word": "the",
+              "pos": "DT"
+            },
+            {
+              "lemma": "market",
+              "word": "market",
+              "pos": "NN"
+            },
+            {
+              "lemma": "and",
+              "word": "and",
+              "pos": "CC"
+            },
+            {
+              "lemma": "buy",
+              "word": "buys",
+              "pos": "VBZ"
+            },
+            {
+              "lemma": "a",
+              "word": "a",
+              "pos": "DT"
+            },
+            {
+              "lemma": "total",
+              "word": "total",
+              "pos": "NN"
+            },
+            {
+              "lemma": "of",
+              "word": "of",
+              "pos": "IN"
+            },
+            {
+              "lemma": "32",
+              "word": "32",
+              "pos": "CD"
+            },
+            {
+              "lemma": "plum",
+              "word": "plums",
+              "pos": "NNS"
+            },
+            {
+              "lemma": "and",
+              "word": "and",
+              "pos": "CC"
+            },
+            {
+              "lemma": "peach",
+              "word": "peaches",
+              "pos": "NNS"
+            },
+            {
+              "lemma": "for",
+              "word": "for",
+              "pos": "IN"
+            },
+            {
+              "lemma": "52",
+              "word": "52",
+              "pos": "CD"
+            },
+            {
+              "lemma": "dollar",
+              "word": "dollars",
+              "pos": "NNS"
+            },
+            {
+              "lemma": ".",
+              "word": ".",
+              "pos": "."
+            }
+          ],
+          "parse": "(ROOT (S (NP (NNP Pedro)) (VP (VP (VBZ goes) (PP (TO to) (NP (DT the) (NN market)))) (CC and) (VP (VBZ buys) (NP (NP (DT a) (NN total)) (PP (IN of) (NP (NP (CD 32) (NNS plums) (CC and) (NNS peaches)) (PP (IN for) (NP (CD 52) (NNS dollars)))))))) (. .))) ",
+          "dependencies": [
+            {
+              "governor_index": "0",
+              "kind": "basic",
+              "relation": "root",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "2",
+              "kind": "basic",
+              "relation": "nsubj",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "2",
+              "kind": "basic",
+              "relation": "prep",
+              "dependent_index": "3"
+            },
+            {
+              "governor_index": "5",
+              "kind": "basic",
+              "relation": "det",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "3",
+              "kind": "basic",
+              "relation": "pobj",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "2",
+              "kind": "basic",
+              "relation": "cc",
+              "dependent_index": "6"
+            },
+            {
+              "governor_index": "2",
+              "kind": "basic",
+              "relation": "conj",
+              "dependent_index": "7"
+            },
+            {
+              "governor_index": "9",
+              "kind": "basic",
+              "relation": "det",
+              "dependent_index": "8"
+            },
+            {
+              "governor_index": "7",
+              "kind": "basic",
+              "relation": "dobj",
+              "dependent_index": "9"
+            },
+            {
+              "governor_index": "9",
+              "kind": "basic",
+              "relation": "prep",
+              "dependent_index": "10"
+            },
+            {
+              "governor_index": "12",
+              "kind": "basic",
+              "relation": "num",
+              "dependent_index": "11"
+            },
+            {
+              "governor_index": "10",
+              "kind": "basic",
+              "relation": "pobj",
+              "dependent_index": "12"
+            },
+            {
+              "governor_index": "12",
+              "kind": "basic",
+              "relation": "cc",
+              "dependent_index": "13"
+            },
+            {
+              "governor_index": "12",
+              "kind": "basic",
+              "relation": "conj",
+              "dependent_index": "14"
+            },
+            {
+              "governor_index": "12",
+              "kind": "basic",
+              "relation": "prep",
+              "dependent_index": "15"
+            },
+            {
+              "governor_index": "17",
+              "kind": "basic",
+              "relation": "num",
+              "dependent_index": "16"
+            },
+            {
+              "governor_index": "15",
+              "kind": "basic",
+              "relation": "pobj",
+              "dependent_index": "17"
+            },
+            {
+              "governor_index": "0",
+              "kind": "collapsed",
+              "relation": "root",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed",
+              "relation": "nsubj",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "5",
+              "kind": "collapsed",
+              "relation": "det",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed",
+              "relation": "prep_to",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed",
+              "relation": "conj_and",
+              "dependent_index": "7"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed",
+              "relation": "det",
+              "dependent_index": "8"
+            },
+            {
+              "governor_index": "7",
+              "kind": "collapsed",
+              "relation": "dobj",
+              "dependent_index": "9"
+            },
+            {
+              "governor_index": "12",
+              "kind": "collapsed",
+              "relation": "num",
+              "dependent_index": "11"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed",
+              "relation": "prep_of",
+              "dependent_index": "12"
+            },
+            {
+              "governor_index": "12",
+              "kind": "collapsed",
+              "relation": "conj_and",
+              "dependent_index": "14"
+            },
+            {
+              "governor_index": "17",
+              "kind": "collapsed",
+              "relation": "num",
+              "dependent_index": "16"
+            },
+            {
+              "governor_index": "12",
+              "kind": "collapsed",
+              "relation": "prep_for",
+              "dependent_index": "17"
+            },
+            {
+              "governor_index": "0",
+              "kind": "collapsed-ccprocessed",
+              "relation": "root",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed-ccprocessed",
+              "relation": "nsubj",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "7",
+              "kind": "collapsed-ccprocessed",
+              "relation": "nsubj",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "5",
+              "kind": "collapsed-ccprocessed",
+              "relation": "det",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed-ccprocessed",
+              "relation": "prep_to",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed-ccprocessed",
+              "relation": "conj_and",
+              "dependent_index": "7"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed-ccprocessed",
+              "relation": "det",
+              "dependent_index": "8"
+            },
+            {
+              "governor_index": "7",
+              "kind": "collapsed-ccprocessed",
+              "relation": "dobj",
+              "dependent_index": "9"
+            },
+            {
+              "governor_index": "12",
+              "kind": "collapsed-ccprocessed",
+              "relation": "num",
+              "dependent_index": "11"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed-ccprocessed",
+              "relation": "prep_of",
+              "dependent_index": "12"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed-ccprocessed",
+              "relation": "prep_of",
+              "dependent_index": "14"
+            },
+            {
+              "governor_index": "12",
+              "kind": "collapsed-ccprocessed",
+              "relation": "conj_and",
+              "dependent_index": "14"
+            },
+            {
+              "governor_index": "17",
+              "kind": "collapsed-ccprocessed",
+              "relation": "num",
+              "dependent_index": "16"
+            },
+            {
+              "governor_index": "12",
+              "kind": "collapsed-ccprocessed",
+              "relation": "prep_for",
+              "dependent_index": "17"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "lemma": "a",
+              "word": "A",
+              "pos": "DT"
+            },
+            {
+              "lemma": "plum",
+              "word": "plum",
+              "pos": "NN"
+            },
+            {
+              "lemma": "cost",
+              "word": "costs",
+              "pos": "VBZ"
+            },
+            {
+              "lemma": "2",
+              "word": "2",
+              "pos": "CD"
+            },
+            {
+              "lemma": "dollar",
+              "word": "dollars",
+              "pos": "NNS"
+            },
+            {
+              "lemma": "and",
+              "word": "and",
+              "pos": "CC"
+            },
+            {
+              "lemma": "a",
+              "word": "a",
+              "pos": "DT"
+            },
+            {
+              "lemma": "peach",
+              "word": "peach",
+              "pos": "NN"
+            },
+            {
+              "lemma": "cost",
+              "word": "costs",
+              "pos": "VBZ"
+            },
+            {
+              "lemma": "1",
+              "word": "1",
+              "pos": "CD"
+            },
+            {
+              "lemma": "dollar",
+              "word": "dollars",
+              "pos": "NNS"
+            },
+            {
+              "lemma": ".",
+              "word": ".",
+              "pos": "."
+            }
+          ],
+          "parse": "(ROOT (S (NP (DT A) (NN plum)) (VP (VBZ costs) (SBAR (S (NP (NP (CD 2) (NNS dollars)) (CC and) (NP (DT a) (NN peach))) (VP (VBZ costs) (NP (CD 1) (NNS dollars)))))) (. .))) ",
+          "dependencies": [
+            {
+              "governor_index": "0",
+              "kind": "basic",
+              "relation": "root",
+              "dependent_index": "3"
+            },
+            {
+              "governor_index": "2",
+              "kind": "basic",
+              "relation": "det",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "3",
+              "kind": "basic",
+              "relation": "nsubj",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "5",
+              "kind": "basic",
+              "relation": "num",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "9",
+              "kind": "basic",
+              "relation": "nsubj",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "5",
+              "kind": "basic",
+              "relation": "cc",
+              "dependent_index": "6"
+            },
+            {
+              "governor_index": "8",
+              "kind": "basic",
+              "relation": "det",
+              "dependent_index": "7"
+            },
+            {
+              "governor_index": "5",
+              "kind": "basic",
+              "relation": "conj",
+              "dependent_index": "8"
+            },
+            {
+              "governor_index": "3",
+              "kind": "basic",
+              "relation": "ccomp",
+              "dependent_index": "9"
+            },
+            {
+              "governor_index": "11",
+              "kind": "basic",
+              "relation": "num",
+              "dependent_index": "10"
+            },
+            {
+              "governor_index": "9",
+              "kind": "basic",
+              "relation": "dobj",
+              "dependent_index": "11"
+            },
+            {
+              "governor_index": "0",
+              "kind": "collapsed",
+              "relation": "root",
+              "dependent_index": "3"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed",
+              "relation": "det",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "3",
+              "kind": "collapsed",
+              "relation": "nsubj",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "5",
+              "kind": "collapsed",
+              "relation": "num",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed",
+              "relation": "nsubj",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "8",
+              "kind": "collapsed",
+              "relation": "det",
+              "dependent_index": "7"
+            },
+            {
+              "governor_index": "5",
+              "kind": "collapsed",
+              "relation": "conj_and",
+              "dependent_index": "8"
+            },
+            {
+              "governor_index": "3",
+              "kind": "collapsed",
+              "relation": "ccomp",
+              "dependent_index": "9"
+            },
+            {
+              "governor_index": "11",
+              "kind": "collapsed",
+              "relation": "num",
+              "dependent_index": "10"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed",
+              "relation": "dobj",
+              "dependent_index": "11"
+            },
+            {
+              "governor_index": "0",
+              "kind": "collapsed-ccprocessed",
+              "relation": "root",
+              "dependent_index": "3"
+            },
+            {
+              "governor_index": "2",
+              "kind": "collapsed-ccprocessed",
+              "relation": "det",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "3",
+              "kind": "collapsed-ccprocessed",
+              "relation": "nsubj",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "5",
+              "kind": "collapsed-ccprocessed",
+              "relation": "num",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed-ccprocessed",
+              "relation": "nsubj",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "8",
+              "kind": "collapsed-ccprocessed",
+              "relation": "det",
+              "dependent_index": "7"
+            },
+            {
+              "governor_index": "5",
+              "kind": "collapsed-ccprocessed",
+              "relation": "conj_and",
+              "dependent_index": "8"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed-ccprocessed",
+              "relation": "nsubj",
+              "dependent_index": "8"
+            },
+            {
+              "governor_index": "3",
+              "kind": "collapsed-ccprocessed",
+              "relation": "ccomp",
+              "dependent_index": "9"
+            },
+            {
+              "governor_index": "11",
+              "kind": "collapsed-ccprocessed",
+              "relation": "num",
+              "dependent_index": "10"
+            },
+            {
+              "governor_index": "9",
+              "kind": "collapsed-ccprocessed",
+              "relation": "dobj",
+              "dependent_index": "11"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "lemma": "how",
+              "word": "How",
+              "pos": "WRB"
+            },
+            {
+              "lemma": "many",
+              "word": "many",
+              "pos": "JJ"
+            },
+            {
+              "lemma": "plum",
+              "word": "plums",
+              "pos": "NNS"
+            },
+            {
+              "lemma": "do",
+              "word": "did",
+              "pos": "VBD"
+            },
+            {
+              "lemma": "Pedro",
+              "word": "Pedro",
+              "pos": "NNP"
+            },
+            {
+              "lemma": "buy",
+              "word": "buy",
+              "pos": "VB"
+            },
+            {
+              "lemma": "?",
+              "word": "?",
+              "pos": "."
+            }
+          ],
+          "parse": "(ROOT (SBARQ (WHADVP (WRB How) (NP (JJ many) (NNS plums))) (SQ (VBD did) (NP (NNP Pedro)) (VP (VB buy))) (. ?))) ",
+          "dependencies": [
+            {
+              "governor_index": "0",
+              "kind": "basic",
+              "relation": "root",
+              "dependent_index": "6"
+            },
+            {
+              "governor_index": "6",
+              "kind": "basic",
+              "relation": "advmod",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "3",
+              "kind": "basic",
+              "relation": "amod",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "1",
+              "kind": "basic",
+              "relation": "dep",
+              "dependent_index": "3"
+            },
+            {
+              "governor_index": "6",
+              "kind": "basic",
+              "relation": "aux",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "6",
+              "kind": "basic",
+              "relation": "nsubj",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "0",
+              "kind": "collapsed",
+              "relation": "root",
+              "dependent_index": "6"
+            },
+            {
+              "governor_index": "6",
+              "kind": "collapsed",
+              "relation": "advmod",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "3",
+              "kind": "collapsed",
+              "relation": "amod",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "1",
+              "kind": "collapsed",
+              "relation": "dep",
+              "dependent_index": "3"
+            },
+            {
+              "governor_index": "6",
+              "kind": "collapsed",
+              "relation": "aux",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "6",
+              "kind": "collapsed",
+              "relation": "nsubj",
+              "dependent_index": "5"
+            },
+            {
+              "governor_index": "0",
+              "kind": "collapsed-ccprocessed",
+              "relation": "root",
+              "dependent_index": "6"
+            },
+            {
+              "governor_index": "6",
+              "kind": "collapsed-ccprocessed",
+              "relation": "advmod",
+              "dependent_index": "1"
+            },
+            {
+              "governor_index": "3",
+              "kind": "collapsed-ccprocessed",
+              "relation": "amod",
+              "dependent_index": "2"
+            },
+            {
+              "governor_index": "1",
+              "kind": "collapsed-ccprocessed",
+              "relation": "dep",
+              "dependent_index": "3"
+            },
+            {
+              "governor_index": "6",
+              "kind": "collapsed-ccprocessed",
+              "relation": "aux",
+              "dependent_index": "4"
+            },
+            {
+              "governor_index": "6",
+              "kind": "collapsed-ccprocessed",
+              "relation": "nsubj",
+              "dependent_index": "5"
+            }
+          ]
+        }
+      ]
+    },
+    "labeled_example": {
+      "index": 6149,
+      "question": "Pedro goes to the market and buys a total of 32 plums and peaches for 52 dollars. A plum costs 2 dollars and a peach costs 1 dollars. How many plums did Pedro buy?",
+      "solutions": [
+        20.0
+      ],
+      "equations": [
+        "(2.0*plums)+(1.0*peaches)=52.0",
+        "plums+peaches=32.0"
+      ]
+    },
+    "template": null
+  },
+  "number_map": {
+    "n_0": {
+      "token": 10,
+      "number": 32.0,
+      "sentence": 0
+    },
+    "n_1": {
+      "token": 15,
+      "number": 52.0,
+      "sentence": 0
+    },
+    "n_2": {
+      "token": 3,
+      "number": 2.0,
+      "sentence": 1
+    },
+    "n_3": {
+      "token": 9,
+      "number": 1.0,
+      "sentence": 1
+    }
+  },
+  "template_index": 0,
+  "numbers": [],
+  "nouns": [
+    {
+      "token": 4,
+      "noun": "market",
+      "sentence": 0
+    },
+    {
+      "token": 8,
+      "noun": "total",
+      "sentence": 0
+    },
+    {
+      "token": 11,
+      "noun": "plums",
+      "sentence": 0
+    },
+    {
+      "token": 13,
+      "noun": "peaches",
+      "sentence": 0
+    },
+    {
+      "token": 16,
+      "noun": "dollars",
+      "sentence": 0
+    },
+    {
+      "token": 1,
+      "noun": "plum",
+      "sentence": 1
+    },
+    {
+      "token": 4,
+      "noun": "dollars",
+      "sentence": 1
+    },
+    {
+      "token": 7,
+      "noun": "peach",
+      "sentence": 1
+    },
+    {
+      "token": 10,
+      "noun": "dollars",
+      "sentence": 1
+    },
+    {
+      "token": 2,
+      "noun": "plums",
+      "sentence": 2
+    }
+  ],
+  "unknown_map": {
+    "u_0_0": {
+      "token": 4,
+      "noun": "market",
+      "sentence": 0
+    },
+    "u_0_1": {
+      "token": 4,
+      "noun": "market",
+      "sentence": 0
+    },
+    "u_1_1": {
+      "token": 4,
+      "noun": "market",
+      "sentence": 0
+    },
+    "u_1_0": {
+      "token": 4,
+      "noun": "market",
+      "sentence": 0
+    }
+  },
+  "template": {
+    "equations": [
+      {
+        "symbols": [
+          "n_3",
+          "u_1_0",
+          "n_2",
+          "u_0_0",
+          "n_1"
+        ],
+        "full": "n_1*u_1_0 + n_2*u_0_0 - 1.0*n_3"
+      },
+      {
+        "symbols": [
+          "n_0",
+          "u_0_1",
+          "u_1_1"
+        ],
+        "full": "-1.0*n_0 + u_0_1 + u_1_1"
+      }
+    ],
+    "solution": {
+      "u_1": {
+        "symbols": [
+          "n_3",
+          "n_0",
+          "n_2",
+          "n_1"
+        ],
+        "full": "(-1.0*n_0*n_2 + 1.0*n_3)/(n_1 - n_2)"
+      },
+      "u_0": {
+        "symbols": [
+          "n_3",
+          "n_0",
+          "n_2",
+          "n_1"
+        ],
+        "full": "(1.0*n_0*n_1 - 1.0*n_3)/(n_1 - n_2)"
+      }
+    }
+  }
+}

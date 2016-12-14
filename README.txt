@@ -41,7 +41,7 @@ How to use:
   * To find the set of unique templates:
     $ python main.py find-template-set
 
-    This can take about an hour and will output to unique_templates.json
+    This can take about two hours and will output to unique_templates.json
     A pretty printed version is committed to the repo
 
   * To extract a feature vector for an example derivation:
@@ -92,7 +92,7 @@ Tour of code:
         set of unique templates
 
   * optimize.py:
-      Setups up the inputs necessary to call into the L-BFGS library
+      Sets up the inputs necessary to call into the L-BFGS library
       function which we are using.
 
   * classifier.py:
